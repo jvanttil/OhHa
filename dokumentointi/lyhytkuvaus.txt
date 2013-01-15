@@ -1,0 +1,27 @@
+Aihe: yksinkertainen pienten molekyylien liikettä mallintava ohjelma
+
+Käyttäjät: laskennalliset kemistit
+
+Käyttäjän toiminnot: 
+
+	- valitsee mitä molekyylejä on kyseessä ja
+	minkä kokoisessa tilassa
+
+	- valitsee lämpötilan molekyylien liikkeelle
+
+	- valitsee mitä lukuarvoja simulaatiosta tulostetaan
+
+	- valitsee simulaation pituuden
+
+Simulaatio mallintaa yksinkertaisten pienten molekyylien, 
+esimerkiksi vesi tai jalokaasut tai etanoli, liikettä 
+kolmessa ulottuvuudessa. Molekyylit koostuvat atomeista, 
+jotka ovat kiinnittyneet toisiinsa yksinkertaisen jousivoiman 
+tavoin. Molekyylien väliset interaktiot koostuvat atomien 
+hylkimisestä. Käyttäjä valitsee sopivat alkuparametrit, jonka 
+jälkeen ohjelma arpoo molekyylit sopivaan järjestykseen 
+laatikkoon ja suorittaa liikesimulaatiota halutun ajan 
+tulostaen tiedostoon kaikkien atomien koordinaatit kullakin 
+aika-askeleella. Tämän jälkeen tiedosto voidaan uudelleen 
+lukea muistiin, ja siitä voidaan tulostaa ruudulle tärkeimpiä 
+tunnuslukuja, kuten esimerkiksi keskimääräistä liike-energiaa. 
