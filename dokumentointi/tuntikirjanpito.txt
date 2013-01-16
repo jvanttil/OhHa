@@ -1,2 +1,4 @@
 2013-01-15 	2 h säätöä gitin ja githubin kanssa
 		1 h tehtävien tekoa
+2013-01-16	1 h rakenteen miettimistä
+		0.5 h koodin kirjoitusta
