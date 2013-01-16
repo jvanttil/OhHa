@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package md;
 
 /**
- *
  * @author jvanttil
  */
 public class Md {
