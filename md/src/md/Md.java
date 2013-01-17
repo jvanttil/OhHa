@@ -10,5 +10,7 @@ public class Md {
      */
     public static void main(String[] args) {
         vetykaasu vk = new vetykaasu();
+        vk.sisaiset();
+        vk.ruudulle();
     }
 }

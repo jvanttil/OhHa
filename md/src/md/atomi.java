@@ -43,4 +43,8 @@ public class atomi {
         System.out.print("liikkuu");
     }
     
+    public void kertymatruudulle() {
+        System.out.println(kertymax+" "+kertymay+" "+kertymaz+" ");
+    }
+    
 }

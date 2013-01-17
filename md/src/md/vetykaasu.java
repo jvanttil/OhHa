@@ -7,17 +7,21 @@ public class vetykaasu implements molekyyli{
     
     private vety v1;
     private vety v2;
+    private sidos s1;
+    private double tasapaino = 1.47;
     private double koko;
     
     public vetykaasu() {
         v1 = new vety(-0.735,0.0,0.0);
         v2 = new vety(0.735,0.0,0.0);
+        s1 = new sidos(v1,v2,tasapaino);
         koko = 2.0;
     }
     
     public vetykaasu(double sx, double sy, double sz) {
         v1 = new vety(sx-0.735,sy,sz);
         v2 = new vety(sx+0.735,sy,sz);
+        s1 = new sidos(v1,v2,tasapaino);
         koko = 2.0;
     }
     
@@ -27,6 +31,15 @@ public class vetykaasu implements molekyyli{
     
     public double annakoko() {
         return koko;
+    }
+    
+    public void sisaiset() {
+        s1.asetavoima();
+    }
+    
+    public void ruudulle() {
+        v1.kertymatruudulle();
+        v2.kertymatruudulle();
     }
     
 }
