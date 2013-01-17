@@ -4,15 +4,7 @@ package md;
  *
  * @author jvanttil
  */
-public class vety implements atomi{
-    
-    private double massa;
-    private double sijaintix;
-    private double sijaintiy;
-    private double sijaintiz;
-    private double kertymax;
-    private double kertymay;
-    private double kertymaz;
+public class vety extends atomi{
     
     public vety() {
         massa = 1.0;
@@ -33,26 +25,4 @@ public class vety implements atomi{
         kertymay = 0.0;
         kertymaz = 0.0;
     }
-    
-    public double getx() { return sijaintix; }
-    public double gety() { return sijaintiy; }
-    public double getz() { return sijaintiz; }
-    
-    public void kerryta( double sx, double sy, double sz ) {
-        kertymax += sx;
-        kertymay += sy;
-        kertymaz += sz;
-    }
-    
-    public void nollaavoimat() {
-        kertymax = 0.0;
-        kertymay = 0.0;
-        kertymaz = 0.0;
-    }
-    
-    public void liikuta() {
-        System.out.print("liikkuu");
-    }
-            
-    
 }
