@@ -7,4 +7,6 @@ public interface molekyyli {
     
     double annamomentti();
     
+    double annakoko();
+    
 }
