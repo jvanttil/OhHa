@@ -15,4 +15,6 @@ public interface molekyyli {
     
     void ruudulle();
     
+    String annasijainnit();
+    
 }

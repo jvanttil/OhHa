@@ -48,4 +48,9 @@ public class vetykaasu implements molekyyli{
         System.out.println("");
     }
     
+    public String annasijainnit() {
+        String sijainnit = (v1.annax()+" "+v1.annay()+" "+v1.annaz()+" "+v2.annax()+" "+v2.annay()+" "+v2.annaz()+" ");
+        return sijainnit;
+    }
+    
 }

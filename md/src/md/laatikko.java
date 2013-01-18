@@ -1,5 +1,8 @@
 package md;
 
+import java.io.File;
+import java.io.PrintWriter;
+
 /**
  * @author jvanttil
  */
@@ -10,6 +13,7 @@ public class laatikko {
     private double kokoz;
     private short molekyylilkm;
     private molekyyli[] molekyylilista;
+    public tiedostokasittelija fio;
     
     public laatikko() {
         kokox = 10;
@@ -17,6 +21,7 @@ public class laatikko {
         kokoz = 10;
         molekyylilkm = 1;
         molekyylilista = new molekyyli[molekyylilkm];
+        fio = new tiedostokasittelija();
     }
     
     public void generoi() {
@@ -28,6 +33,7 @@ public class laatikko {
             molekyylilista[0].sisaiset();
             molekyylilista[0].liikuta(dt);
             molekyylilista[0].ruudulle();
+            fio.laitavektoritiedostoon(molekyylilista[0].annasijainnit());
         }
     }
     
