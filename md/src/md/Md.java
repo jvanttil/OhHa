@@ -11,19 +11,8 @@ public class Md {
      */
     public static void main(String[] args) {
         
-        vetykaasu vk = new vetykaasu();
-        vk.sisaiset();
-        vk.ruudulle();
-        vk.liikuta();
-        vk.sisaiset();
-        vk.ruudulle();
-        vk.liikuta();
-        vk.sisaiset();
-        vk.ruudulle();
-        vk.liikuta();
-        vk.sisaiset();
-        vk.ruudulle();
-        vk.liikuta();
-        
+        laatikko mesta = new laatikko();
+        mesta.generoi();
+        mesta.simuloi(0.01,5);
     }
 }

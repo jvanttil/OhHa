@@ -37,14 +37,15 @@ public class vetykaasu implements molekyyli{
         s1.asetavoima();
     }
     
-    public void liikuta() {
-        v1.liikuta();
-        v2.liikuta();
+    public void liikuta(double dt) {
+        v1.liikuta(dt);
+        v2.liikuta(dt);
     }
     
     public void ruudulle() {
         v1.kertymatruudulle();
         v2.kertymatruudulle();
+        System.out.println("");
     }
     
 }

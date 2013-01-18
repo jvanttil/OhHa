@@ -42,13 +42,13 @@ public class atomi {
         kertymaz = 0.0;
     }
     
-    public void liikuta() {
-        double uusisijaintix = sijaintix + nopeusx*0.01 + (kertymax/(2.0*massa))*0.01*0.01;
-        double uusisijaintiy = sijaintiy + nopeusy*0.01 + (kertymay/(2.0*massa))*0.01*0.01;
-        double uusisijaintiz = sijaintiz + nopeusz*0.01 + (kertymaz/(2.0*massa))*0.01*0.01;
-        double uusinopeusx = nopeusx + (kertymax/(2.0*massa))*0.01;
-        double uusinopeusy = nopeusy + (kertymay/(2.0*massa))*0.01;
-        double uusinopeusz = nopeusz + (kertymaz/(2.0*massa))*0.01;
+    public void liikuta(double dt) {
+        double uusisijaintix = sijaintix + nopeusx*dt + (kertymax/(2.0*massa))*dt*dt;
+        double uusisijaintiy = sijaintiy + nopeusy*dt + (kertymay/(2.0*massa))*dt*dt;
+        double uusisijaintiz = sijaintiz + nopeusz*dt + (kertymaz/(2.0*massa))*dt*dt;
+        double uusinopeusx = nopeusx + (kertymax/(2.0*massa))*dt;
+        double uusinopeusy = nopeusy + (kertymay/(2.0*massa))*dt;
+        double uusinopeusz = nopeusz + (kertymaz/(2.0*massa))*dt;
         sijaintix = uusisijaintix;
         sijaintiy = uusisijaintiy;
         sijaintiz = uusisijaintiz;
@@ -56,7 +56,7 @@ public class atomi {
     }
     
     public void kertymatruudulle() {
-        System.out.println(sijaintix+" "+sijaintiy+" "+sijaintiz+" ");
+        System.out.print(sijaintix+" "+sijaintiy+" "+sijaintiz+" ");
     }
     
 }

@@ -9,4 +9,10 @@ public interface molekyyli {
     
     double annakoko();
     
+    void sisaiset();
+    
+    void liikuta(double dt);
+    
+    void ruudulle();
+    
 }
