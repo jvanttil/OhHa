@@ -9,6 +9,9 @@ public class atomi {
     protected double sijaintix;
     protected double sijaintiy;
     protected double sijaintiz;
+    protected double nopeusx;
+    protected double nopeusy;
+    protected double nopeusz;
     protected double kertymax;
     protected double kertymay;
     protected double kertymaz;
@@ -40,11 +43,20 @@ public class atomi {
     }
     
     public void liikuta() {
-        System.out.print("liikkuu");
+        double uusisijaintix = sijaintix + nopeusx*0.01 + (kertymax/(2.0*massa))*0.01*0.01;
+        double uusisijaintiy = sijaintiy + nopeusy*0.01 + (kertymay/(2.0*massa))*0.01*0.01;
+        double uusisijaintiz = sijaintiz + nopeusz*0.01 + (kertymaz/(2.0*massa))*0.01*0.01;
+        double uusinopeusx = nopeusx + (kertymax/(2.0*massa))*0.01;
+        double uusinopeusy = nopeusy + (kertymay/(2.0*massa))*0.01;
+        double uusinopeusz = nopeusz + (kertymaz/(2.0*massa))*0.01;
+        sijaintix = uusisijaintix;
+        sijaintiy = uusisijaintiy;
+        sijaintiz = uusisijaintiz;
+        nollaavoimat();
     }
     
     public void kertymatruudulle() {
-        System.out.println(kertymax+" "+kertymay+" "+kertymaz+" ");
+        System.out.println(sijaintix+" "+sijaintiy+" "+sijaintiz+" ");
     }
     
 }
