@@ -1,7 +1,6 @@
 package md;
 
-import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileWriter;
 
 /**
  * @author jvanttil
@@ -29,11 +28,18 @@ public class laatikko {
     }
     
     public void simuloi(double dt, int askelia) {
+        try {
+        FileWriter kirjoittaja = new FileWriter("uloos.txt");
         for( int i = 0; i < askelia; i++ ) {
             molekyylilista[0].sisaiset();
             molekyylilista[0].liikuta(dt);
             molekyylilista[0].ruudulle();
-            fio.laitavektoritiedostoon(molekyylilista[0].annasijainnit());
+            kirjoittaja.append(molekyylilista[0].annasijainnit());
+            kirjoittaja.append("\r\n");
+        }
+        kirjoittaja.close();
+        } catch (Exception e) {
+            System.out.println("imee");
         }
     }
     
