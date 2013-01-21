@@ -23,11 +23,15 @@ public class sidos {
         tasapaino = tsp;
     }
     
-    public void asetavoima() {
+    public void laskeetaisyydet() {
         etaisyysx = a1.annax() - a2.annax();
         etaisyysy = a1.annay() - a2.annay();
         etaisyysz = a1.annaz() - a2.annaz();
         etaisyys = Math.sqrt(etaisyysx*etaisyysx + etaisyysy*etaisyysy + etaisyysz*etaisyysz);
+    }
+    
+    public void asetavoima() {
+        laskeetaisyydet();
         voimax = (etaisyysx / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
         voimay = (etaisyysy / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
         voimaz = (etaisyysz / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
@@ -38,7 +42,6 @@ public class sidos {
             a1.kerryta(voimax,voimay,voimaz);
             a2.kerryta(-1.0*voimax,-1.0*voimay,-1.0*voimaz);
         }
-        
     }
     
 }

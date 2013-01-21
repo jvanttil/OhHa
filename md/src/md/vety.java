@@ -11,6 +11,9 @@ public class vety extends atomi{
         sijaintix = 0.0;
         sijaintiy = 0.0;
         sijaintiz = 0.0;
+        nopeusx = 0.0;
+        nopeusy = 0.0;
+        nopeusz = 0.0;
         kertymax = 0.0;
         kertymay = 0.0;
         kertymaz = 0.0;
@@ -21,6 +24,9 @@ public class vety extends atomi{
         sijaintix = sx;
         sijaintiy = sy;
         sijaintiz = sz;
+        nopeusx = 0.0;
+        nopeusy = 0.0;
+        nopeusz = 0.0;
         kertymax = 0.0;
         kertymay = 0.0;
         kertymaz = 0.0;
