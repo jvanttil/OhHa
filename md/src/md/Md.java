@@ -1,5 +1,7 @@
 package md;
 
+import md.simulaatio.laatikko;
+
 /**
  * @author jvanttil
  */

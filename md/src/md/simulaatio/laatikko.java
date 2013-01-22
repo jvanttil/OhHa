@@ -1,7 +1,8 @@
-package md;
+package md.simulaatio;
 
 import java.io.FileWriter;
 import java.util.Random;
+import md.tiedostokasittelija;
 
 /**
  * @author jvanttil

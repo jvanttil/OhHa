@@ -1,4 +1,6 @@
-package md;
+package md.simulaatio;
+
+import md.simulaatio.atomi;
 
 /**
  *

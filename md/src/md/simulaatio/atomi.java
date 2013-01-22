@@ -1,4 +1,4 @@
-package md;
+package md.simulaatio;
 
 /**
  * @author jvanttil

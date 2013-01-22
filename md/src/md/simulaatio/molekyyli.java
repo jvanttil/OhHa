@@ -1,13 +1,17 @@
-package md;
+package md.simulaatio;
 
 /**
  * @author jvanttil
  */
 public interface molekyyli {
     
-    double annamomentti();
-    
     double annakoko();
+    
+    double annasijaintix();
+    
+    double annasijaintiy();
+    
+    double annasijaintiz();
     
     void sisaiset();
     

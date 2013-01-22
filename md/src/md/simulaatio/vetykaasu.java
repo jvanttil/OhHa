@@ -1,4 +1,8 @@
-package md;
+package md.simulaatio;
+
+import md.simulaatio.vety;
+import md.simulaatio.sidos;
+import md.simulaatio.molekyyli;
 
 /**
  * @author jvanttil
@@ -33,8 +37,8 @@ public class vetykaasu implements molekyyli{
         return nopeus;
     }
     
-    public double annamomentti() {
-        return 0.0;
+    public double annakertymasumma() {
+        return Math.abs(v1.kertymax)+Math.abs(v1.kertymay)+Math.abs(v1.kertymaz)+Math.abs(v2.kertymax)+Math.abs(v2.kertymay)+Math.abs(v2.kertymaz);
     }
     
     public double annakoko() {
@@ -51,8 +55,8 @@ public class vetykaasu implements molekyyli{
     }
     
     public void perturboi(double x1,double y1,double z1,double x2,double y2,double z2) {
-        v1.lisaanopeus(x1,y1,z1);
-        v2.lisaanopeus(x2,y2,z2);
+        v1.kerryta(x1,y1,z1);
+        v2.kerryta(x2,y2,z2);
     }
     
     public void ruudulle() {
@@ -60,6 +64,14 @@ public class vetykaasu implements molekyyli{
         v2.kertymatruudulle();
         System.out.println("");
     }
+    
+    public double annaetaisyys() {
+        return s1.etaisyys;
+    }
+    
+    public double annasijaintix() { return (v1.annax()+v2.annax())/2.0; }
+    public double annasijaintiy() { return (v1.annay()+v2.annay())/2.0; }
+    public double annasijaintiz() { return (v1.annaz()+v2.annaz())/2.0; }
     
     public String annasijainnit() {
         String sijainnit = (v1.annax()+" "+v1.annay()+" "+v1.annaz()+" "+v2.annax()+" "+v2.annay()+" "+v2.annaz()+" ");

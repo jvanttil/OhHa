@@ -1,4 +1,6 @@
-package md;
+package md.simulaatio;
+
+import md.simulaatio.atomi;
 
 /**
  * @author jvanttil
@@ -12,7 +14,7 @@ public class sidos {
     private double etaisyysx;
     private double etaisyysy;
     private double etaisyysz;
-    private double etaisyys;
+    protected double etaisyys;
     private double voimax;
     private double voimay;
     private double voimaz;
