@@ -7,3 +7,5 @@
 		1.0 h metodien kirjoitusta
 2013-01-21	0.5 h metodien korjausta
 		1.0 h testaus aloitettu
+2013-01-22	1.25 h testauksen rakentelua
+		0.25 h luokkakaavion piirtoa
