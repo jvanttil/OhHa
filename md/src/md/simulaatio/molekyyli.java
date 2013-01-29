@@ -15,6 +15,8 @@ public interface molekyyli {
     
     double annasijaintiz();
     
+    double annanopeus();
+    
     void sisaiset();
     
     void liikuta(double dt,double koko);

@@ -8,7 +8,6 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author jvanttil
  */
 public class simulaatiotesti {

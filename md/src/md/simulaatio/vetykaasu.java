@@ -44,7 +44,7 @@ public class vetykaasu implements molekyyli{
         nopeus = (vedyt[0].annanopeusx()+vedyt[1].annanopeusx())/2.0+
                 (vedyt[0].annanopeusy()+vedyt[1].annanopeusy())/2.0+
                 (vedyt[0].annanopeusz()+vedyt[1].annanopeusz())/2.0;
-        return nopeus;
+        return Math.abs(nopeus);
     }
     
     public double annakertymasumma() {
