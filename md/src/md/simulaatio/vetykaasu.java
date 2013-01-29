@@ -32,6 +32,10 @@ public class vetykaasu implements molekyyli{
         koko = 2.0;
     }
     
+    public int annaatomilkm() {
+        return 2;
+    }
+    
     public double annanopeus() {
         nopeus = v1.annanopeusx()+v1.annanopeusy()+v1.annanopeusz()+v2.annanopeusx()+v2.annanopeusy()+v2.annanopeusz();
         return nopeus;
@@ -67,6 +71,14 @@ public class vetykaasu implements molekyyli{
     
     public double annaetaisyys() {
         return s1.etaisyys;
+    }
+    
+    public atomi viittausatomiin(int nro) {
+        if( nro == 1 ) {
+            return v1;
+        } else {
+            return v2;
+        }
     }
     
     public double annasijaintix() { return (v1.annax()+v2.annax())/2.0; }

@@ -12,6 +12,6 @@ public class Md {
         
         laatikko mesta = new laatikko();
         mesta.generoi();
-        mesta.simuloi(0.3,270);
+        mesta.simuloi(0.4,600);
     }
 }
