@@ -49,8 +49,6 @@ public class laatikko {
             voimarekisteri.ulkoiset();
             molekyylilista[0].liikuta(dt,koko);
             molekyylilista[1].liikuta(dt,koko);
-            molekyylilista[0].ruudulle();
-            molekyylilista[1].ruudulle();
             kirjoittaja.append(molekyylilista[0].annasijainnit()+" "+molekyylilista[1].annasijainnit());
             kirjoittaja.append("\r\n");
         }

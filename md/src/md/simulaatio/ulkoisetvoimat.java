@@ -49,7 +49,6 @@ public class ulkoisetvoimat {
                     voimax = (etaisyysx / etaisyys)*(1/Math.pow(etaisyys,12)-0.5/Math.pow(etaisyys,6));
                     voimay = (etaisyysy / etaisyys)*(1/Math.pow(etaisyys,12)-0.5/Math.pow(etaisyys,6));
                     voimaz = (etaisyysz / etaisyys)*(1/Math.pow(etaisyys,12)-0.5/Math.pow(etaisyys,6));
-                    //(48*matkatx[i,j]/matkat[i,j]^2)*(1/matkat[i,j]^12-0.5/matkat[i,j]^6)
                     atomit[i].kerryta(-1.0*voimax,-1.0*voimay,-1.0*voimaz);
                     atomit[j].kerryta(voimax,voimay,voimaz);
                 }
