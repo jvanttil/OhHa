@@ -10,3 +10,4 @@
 2013-01-22	1.25 h testauksen rakentelua
 		0.25 h luokkakaavion piirtoa
 2013-01-27	1.5 h molekyylien välisten voimien lisäys
+		1 h yleistetty n molekyyliin

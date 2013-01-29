@@ -10,10 +10,9 @@ import md.simulaatio.molekyyli;
 public class vetykaasu implements molekyyli{
     
     private vety[] vedyt;
-    //private vety v1;
-    //private vety v2;
     private sidos s1;
     private double nopeus;
+    private int atomilkm = 2;
     private double tasapaino = 1.47;
     private double koko;
     
@@ -38,7 +37,7 @@ public class vetykaasu implements molekyyli{
     }
     
     public int annaatomilkm() {
-        return 2;
+        return atomilkm;
     }
     
     public double annanopeus() {
@@ -82,11 +81,7 @@ public class vetykaasu implements molekyyli{
     }
     
     public atomi viittausatomiin(int nro) {
-        if( nro == 1 ) {
-            return vedyt[0];
-        } else {
-            return vedyt[1];
-        }
+        return vedyt[nro];
     }
     
     public double annasijaintix() { return (vedyt[0].annax()+vedyt[1].annax())/2.0; }
