@@ -37,6 +37,7 @@ public class atomi {
     }
     
     public void liikuta(double dt,double koko) {
+        // siisti tätä pilkkomalla osiin
         double uusisijaintix = sijaintix + nopeusx*dt + (kertymax/(2.0*massa))*dt*dt;
         double uusisijaintiy = sijaintiy + nopeusy*dt + (kertymay/(2.0*massa))*dt*dt;
         double uusisijaintiz = sijaintiz + nopeusz*dt + (kertymaz/(2.0*massa))*dt*dt;

@@ -20,8 +20,6 @@ public class vetykaasu implements molekyyli{
         vedyt = new vety[2];
         vedyt[0] = new vety(-0.735,0.0,0.0);
         vedyt[1] = new vety(0.735,0.0,0.0);
-        //v1 = new vety(-0.735,0.0,0.0);
-        //v2 = new vety(0.735,0.0,0.0);
         s1 = new sidos(vedyt[0],vedyt[1],tasapaino);
         nopeus = 0.0;
         koko = 2.0;

@@ -34,6 +34,7 @@ public class laatikko {
     }
     
     public void generoi(double skoko, int smolekyylilkm) {
+        // generointimetodin pilkkominen olisi hyvä idea jos mahdollista
         koko = skoko;
         molekyylilkm = smolekyylilkm;
         molekyylilista = new molekyyli[molekyylilkm];
@@ -62,12 +63,14 @@ public class laatikko {
     }
     
     public void perturboi() {
+        // perturbaatio siirtyy pallokoordinaatistoon kunhan ehtii
         for( int i = 0; i < molekyylilkm; i++ ) {
             molekyylilista[i].perturboi(0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.0,0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.0);
         }
     }
     
     public void simuloi(double dt, int askelia) {
+        // tulostusproseduuri on muutettava siten, että tiedot tallentuvat taulukkoon -> aineiston käsittelijään
         try {
         FileWriter kirjoittaja = new FileWriter("ulos.txt");
         for( int i = 0; i < askelia; i++ ) {
