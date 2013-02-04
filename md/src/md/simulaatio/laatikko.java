@@ -2,6 +2,7 @@ package md.simulaatio;
 
 import java.io.FileWriter;
 import java.util.Random;
+import md.aineistokasittely.aineistokasittelija;
 
 /**
  * @author jvanttil
@@ -69,18 +70,28 @@ public class laatikko {
         }
     }
     
-    public void simuloi(double dt, int askelia) {
+    public void simuloi(double dt, int askelia, int resoluutio) {
         // tulostusproseduuri on muutettava siten, että tiedot tallentuvat taulukkoon -> aineiston käsittelijään
+        // String tulostus;
         try {
         FileWriter kirjoittaja = new FileWriter("ulos.txt");
         for( int i = 0; i < askelia; i++ ) {
-            String tulostus = "";
             voimarekisteri.ulkoiset();
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].sisaiset(); }
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,koko); }
-            for( int j = 0; j < molekyylilkm; j++ ) { tulostus = tulostus + molekyylilista[j].annasijainnit()+" "; }
-            kirjoittaja.append(tulostus);
-            kirjoittaja.append("\r\n");
+            if( i % resoluutio == 0 ) {
+                for( int j = 0; j < molekyylilkm; j++ ) { 
+                    aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit2()); 
+                }
+            }
+            /*
+            if( i % resoluutio == 0 ) {
+                tulostus = i*dt + " ";
+                for( int j = 0; j < molekyylilkm; j++ ) { tulostus = tulostus + molekyylilista[j].annasijainnit()+" "; }
+                kirjoittaja.append(tulostus);
+                kirjoittaja.append("\r\n");
+            }
+            */
         }
         kirjoittaja.close();
         } catch (Exception e) {

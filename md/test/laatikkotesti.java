@@ -45,14 +45,14 @@ public class laatikkotesti {
     @Test
     public void ulkoinenvoimatoimiiheti() {
         koelaatikko.generoi(10.0,2);
-        koelaatikko.simuloi(0.01,1);
+        koelaatikko.simuloi(0.01,1,1);
         assertTrue(koelaatikko.nopeussumma() > 0.0);
     }
     
     @Test
     public void ulkoinenvoimaeitoimisisaisesti() {
         koelaatikko.generoi(10.0,1);
-        koelaatikko.simuloi(0.01,10);
+        koelaatikko.simuloi(0.01,10,1);
         assertTrue(koelaatikko.nopeussumma() == 0.0);
     }
     

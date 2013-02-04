@@ -29,4 +29,6 @@ public interface molekyyli {
     
     String annasijainnit();
     
+    double[] annasijainnit2();
+    
 }

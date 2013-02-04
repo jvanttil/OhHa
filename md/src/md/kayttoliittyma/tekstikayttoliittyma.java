@@ -2,6 +2,7 @@ package md.kayttoliittyma;
 
 import java.util.Scanner;
 import md.simulaatio.laatikko;
+import md.aineistokasittely.aineistokasittelija;
 
 /**
  * @author jvanttil
@@ -10,19 +11,28 @@ public class tekstikayttoliittyma {
     
     public static Scanner input = new Scanner(System.in);
     private laatikko ltk;
+    private aineistokasittelija aineisto;
     private double laatikonkoko;
     private int molekyylimaara;
+    private double askelkoko;
+    private int askelmaara;
+    private int resoluutio;
     
     public tekstikayttoliittyma(){
-        
+        ltk = new laatikko();
+        resoluutio = 10;
     }
     
     public void rullaa() {
         asetalaatikko();
         asetamolekyylit();
+        asetaaskelkoko();
+        asetaaskelmaara();
+        aineisto = new aineistokasittelija(laatikonkoko,molekyylimaara,askelkoko,askelmaara,resoluutio);
         ltk.generoi(laatikonkoko,molekyylimaara);
         ltk.perturboi();
-        ltk.simuloi(0.75,100);
+        ltk.simuloi(askelkoko,askelmaara,resoluutio);
+        aineisto.ruudulle();
     }
     
     public void asetalaatikko() {
@@ -44,8 +54,8 @@ public class tekstikayttoliittyma {
     
     public void asetamolekyylit() {
         boolean valmis = false;
+        int yriteluku;
         while( !valmis ) {
-            int yriteluku;
             System.out.println("Montako molekyyliä laitetaan laatikkoon? ");
             String lukutalteen = input.nextLine();
             yriteluku = Integer.parseInt(lukutalteen);
@@ -61,6 +71,42 @@ public class tekstikayttoliittyma {
                 }
             } else {
                 System.out.println("liian monta molekyylia, kokeile uudestaan");
+            }
+        }
+    }
+    
+    public void asetaaskelkoko() {
+        boolean valmis = false;
+        double yriteluku;
+        while( !valmis ) {
+            System.out.println("Kuinka suurella askelkoolla simuloidaan?");
+            System.out.println("Sopiva koko on väliltä 1.0 - 0.01");
+            String lukutalteen = input.nextLine();
+            yriteluku = Double.parseDouble(lukutalteen);
+            if( (yriteluku < 0.01) || (yriteluku > 1.0) ) {
+                System.out.println("ei ole sopiva luku, kokeile uudestaan");
+            } else {
+                askelkoko = yriteluku;
+                System.out.println("Askelkooksi asetettu " + askelkoko);
+                valmis = true;
+            }
+        }
+    }
+    
+    public void asetaaskelmaara() {
+        boolean valmis = false;
+        int yriteluku;
+        while( !valmis ) {
+            System.out.println("Kuinka monta askelta simuloidaan?");
+            System.out.println("Sopiva koko on väliltä 100 - 1000");
+            String lukutalteen = input.nextLine();
+            yriteluku = Integer.parseInt(lukutalteen);
+            if( (yriteluku < 100) || (yriteluku > 1000) ) {
+                System.out.println("ei ole sopiva luku, kokeile uudestaan");
+            } else {
+                askelmaara = yriteluku;
+                System.out.println("Askelten määräksi asetettu " + askelmaara);
+                valmis = true;
             }
         }
     }

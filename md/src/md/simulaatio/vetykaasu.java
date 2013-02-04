@@ -96,4 +96,9 @@ public class vetykaasu implements molekyyli{
         return sijainnit;
     }
     
+    public double[] annasijainnit2() {
+        double[] a = {vedyt[0].annax(),vedyt[0].annay(),vedyt[0].annaz(),vedyt[1].annax(),vedyt[1].annay(),vedyt[1].annaz()};
+        return a;
+    }
+    
 }
