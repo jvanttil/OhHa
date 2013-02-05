@@ -5,6 +5,8 @@ import md.simulaatio.laatikko;
 import md.aineistokasittely.aineistokasittelija;
 
 /**
+ * tekstikäyttöliittymä
+ * kysyy käyttäjältä parametrejä, muodostaa laatikon ja simuloi
  * @author jvanttil
  */
 public class tekstikayttoliittyma {

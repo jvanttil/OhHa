@@ -1,6 +1,7 @@
 package md.simulaatio;
 
 /**
+ * atomiluokka sisältää atomin sijainnin ja nopeuden ja massan
  * @author jvanttil
  */
 public class atomi {

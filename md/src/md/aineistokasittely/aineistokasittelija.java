@@ -1,6 +1,7 @@
 package md.aineistokasittely;
 
 /**
+ * ottaa vastaan simulaatiosta lukuja ja tallettaa tiedostoon
  * @author jvanttil
  */
 public class aineistokasittelija {

@@ -4,6 +4,8 @@ import java.util.Random;
 import md.aineistokasittely.aineistokasittelija;
 
 /**
+ * simulaatiolaatikko
+ * suorittaa simulaation
  * @author jvanttil
  */
 public class laatikko {

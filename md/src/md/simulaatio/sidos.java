@@ -3,6 +3,7 @@ package md.simulaatio;
 import md.simulaatio.atomi;
 
 /**
+ * sidos tulee kaasumolekyylissä atomien väliin
  * @author jvanttil
  */
 public class sidos {

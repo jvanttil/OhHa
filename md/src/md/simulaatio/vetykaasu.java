@@ -5,6 +5,7 @@ import md.simulaatio.sidos;
 import md.simulaatio.molekyyli;
 
 /**
+ * vetykaasumolekyyliluokka
  * @author jvanttil
  */
 public class vetykaasu implements molekyyli{

@@ -3,7 +3,7 @@ package md.simulaatio;
 import md.simulaatio.atomi;
 
 /**
- *
+ * vetyluokka rakentuu atomiluokan päälle, vedyn massa on 1
  * @author jvanttil
  */
 public class vety extends atomi{

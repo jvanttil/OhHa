@@ -1,6 +1,7 @@
 package md.simulaatio;
 
 /**
+ * yhteinen rajapinta molekyyleille
  * @author jvanttil
  */
 public interface molekyyli {

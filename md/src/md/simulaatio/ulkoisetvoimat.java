@@ -1,6 +1,8 @@
 package md.simulaatio;
 
 /**
+ * molekyylienvälisten voimien rekisteri
+ * asettaa atomeihin molekyylin ulkopuolelta tulevat voimat
  * @author jvanttil
  */
 public class ulkoisetvoimat {

@@ -15,4 +15,7 @@
 		0.5 h omaa kokeiluräpellystä
 		0.25 h luokkakaavion piirtoa
 2013-02-04	4.0 h kayttoliittyman kehitysta
-2013-02-05	1.0 h javadokkia
+2013-02-05	1.5 h javadokkia
+		0.5 h sekvenssikaaviota
+			huom 1 kaavio vastaa kaikista
+			tilanteista
