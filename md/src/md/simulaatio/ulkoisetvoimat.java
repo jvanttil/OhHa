@@ -24,6 +24,12 @@ public class ulkoisetvoimat {
         atomit = new atomi[lkm];
     }
     
+    /**
+     * täydentää voimien rekisteriä atomilla
+     * 
+     * @param a1 viittaus atomiin
+     * @param indeksi sijainti taulukossa
+     */
     public void laitaatomirekisteriin(atomi a1, int indeksi) {
         if( tayttoaste < atomilkm ) {
             atomit[tayttoaste] = a1;
@@ -34,6 +40,12 @@ public class ulkoisetvoimat {
         }
     }
     
+    /**
+     * laskee atomien etäisyydet koordinaattien suhteen ja yhdessä
+     * 
+     * @param i atomi 1
+     * @param j atomi 2
+     */
     public void laskeetaisyydet(int i, int j) {
         etaisyysx = atomit[i].annax() - atomit[j].annax();
         etaisyysy = atomit[i].annay() - atomit[j].annay();
@@ -41,6 +53,11 @@ public class ulkoisetvoimat {
         etaisyys = Math.sqrt(etaisyysx*etaisyysx + etaisyysy*etaisyysy + etaisyysz*etaisyysz);
     }
     
+    /**
+     * laskee ulkoisen voiman ja kerryttää sen jokaiselle atomille rekisterissä
+     * hyppää yli saman molekyylin atomit
+     * käyttää ulkoisena voimana Lennard-Jones -potentiaalia
+     */
     public void ulkoiset() {
         for( int i = 0; i < atomilkm; i++ ) {
             for( int j = 0; j < atomilkm; j++ ) {

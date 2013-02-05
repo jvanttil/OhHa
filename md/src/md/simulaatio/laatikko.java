@@ -1,6 +1,5 @@
 package md.simulaatio;
 
-import java.io.FileWriter;
 import java.util.Random;
 import md.aineistokasittely.aineistokasittelija;
 
@@ -22,6 +21,15 @@ public class laatikko {
         rng = new Random();
     }
     
+    /**
+     * laskee mahtuuko n molekyyliä k kokoiseen laatikkoon
+     * 
+     * toimii toistaiseksi hyvin suurpiirteisesti
+     * 
+     * @param koekoko ehdotettu laatikon koko
+     * @param koemolekyylilkm ehdotettu molekyylien lukumäärä
+     * @return true jos sopii false jos ei
+     */
     public boolean mahtuuko(double koekoko, int koemolekyylilkm) {
         int koeruudukonkoko = 1;
         while( Math.pow(koeruudukonkoko,3) <= koemolekyylilkm ) {
@@ -34,8 +42,15 @@ public class laatikko {
         }
     }
     
-    public void generoi(double skoko, int smolekyylilkm) {
-        // generointimetodin pilkkominen olisi hyvä idea jos mahdollista
+    /**
+     * asettaa laatikon ominaisuudet
+     * 
+     * toimii generointimetodin sisältä
+     * 
+     * @param skoko laatikon koko
+     * @param smolekyylilkm molekyylien määrä laatikossa
+     */
+    private void asetaparametrit(double skoko, int smolekyylilkm) {
         koko = skoko;
         molekyylilkm = smolekyylilkm;
         molekyylilista = new molekyyli[molekyylilkm];
@@ -44,6 +59,18 @@ public class laatikko {
         while( Math.pow(ruudukonkoko,3) < molekyylilkm ) {
             ruudukonkoko += 1;
         }
+    }
+    
+    /**
+     * laittaa laatikkoon molekyylit riittävän kauas toisistaan
+     * 
+     * myöskin laittaa atomit ulkoisten voimien rekisteriin
+     * 
+     * @param skoko laatikon koko
+     * @param smolekyylilkm molekyylien määrä laatikossa
+     */
+    public void generoi(double skoko, int smolekyylilkm) {
+        asetaparametrit(skoko,smolekyylilkm);
         int kohta = ruudukonkoko + 1;
         int laskuri = 0;
         for( int i = 1; i < kohta; i++ ) {
@@ -63,6 +90,9 @@ public class laatikko {
         }
     }
     
+    /**
+     * antaa molekyylille pikkaisen vauhtia johonkin suuntaan
+     */
     public void perturboi() {
         // perturbaatio siirtyy pallokoordinaatistoon kunhan ehtii
         for( int i = 0; i < molekyylilkm; i++ ) {
@@ -70,11 +100,17 @@ public class laatikko {
         }
     }
     
+    /**
+     * ajaa koko simulaation
+     * 
+     * laskee ensin ulkoiset voimat, sitten sisäiset voimat ja sitten liikuttaa
+     * kaikkia molekyylejä
+     * 
+     * @param dt aika-askeleen koko
+     * @param askelia aika-askelten lukumäärä
+     * @param resoluutio kuinka monen askeleen välein otetaan tunnuslukuja talteen
+     */
     public void simuloi(double dt, int askelia, int resoluutio) {
-        // tulostusproseduuri on muutettava siten, että tiedot tallentuvat taulukkoon -> aineiston käsittelijään
-        // String tulostus;
-        try {
-        FileWriter kirjoittaja = new FileWriter("ulos.txt");
         for( int i = 0; i < askelia; i++ ) {
             voimarekisteri.ulkoiset();
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].sisaiset(); }
@@ -84,18 +120,6 @@ public class laatikko {
                     aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit2()); 
                 }
             }
-            /*
-            if( i % resoluutio == 0 ) {
-                tulostus = i*dt + " ";
-                for( int j = 0; j < molekyylilkm; j++ ) { tulostus = tulostus + molekyylilista[j].annasijainnit()+" "; }
-                kirjoittaja.append(tulostus);
-                kirjoittaja.append("\r\n");
-            }
-            */
-        }
-        kirjoittaja.close();
-        } catch (Exception e) {
-            System.out.println("tiedoston käsittely ei onnistu");
         }
     }
     

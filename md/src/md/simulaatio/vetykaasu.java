@@ -38,6 +38,11 @@ public class vetykaasu implements molekyyli{
         return atomilkm;
     }
     
+    /**
+     * laskee atomin kokonaisnopeuden ja myös palauttaa sen
+     * 
+     * @return atomin nopeus
+     */
     public double annanopeus() {
         nopeus = (vedyt[0].annanopeusx()+vedyt[1].annanopeusx())/2.0+
                 (vedyt[0].annanopeusy()+vedyt[1].annanopeusy())/2.0+
@@ -54,10 +59,26 @@ public class vetykaasu implements molekyyli{
         return koko;
     }
     
+    /**
+     * kerryttää sidoksesta aiheutuvat voimat
+     * 
+     * kutsuu molekyylin sidosta laskemaan sidoksesta aiheutuvat voimat
+     * ja kerryttämään nämä atomeille
+     */
     public void sisaiset() {
         s1.asetavoima();
     }
     
+    /**
+     * liikuttaa atomeja senhetkisten kerrytettyjen voimien mukaisesti
+     * 
+     * liikuttaa kumpaakin molekyylin atomia kerrytettyjen voimien mukaisesti, 
+     * laatikon koko tarvitaan atomien pitämiseksi laatikon sisällä ja aika-
+     * askeleen koko tarvitaan liikkeen skaalaamiseksi
+     * 
+     * @param dt aika-askeleen koko
+     * @param koko laatikon koko
+     */
     public void liikuta(double dt,double koko) {
         vedyt[0].liikuta(dt,koko);
         vedyt[1].liikuta(dt,koko);
@@ -68,16 +89,18 @@ public class vetykaasu implements molekyyli{
         vedyt[1].kerryta(x2,y2,z2);
     }
     
-    public void ruudulle() {
-        vedyt[0].kertymatruudulle();
-        vedyt[1].kertymatruudulle();
-        System.out.println("");
-    }
-    
     public double annaetaisyys() {
         return s1.etaisyys;
     }
     
+    /**
+     * palauttaa viittauksen atomiin
+     * 
+     * käytetään ulkoisten voimien rekisterin muodostamista varten
+     * 
+     * @param nro tarvitaan indeksi 0 tai 1
+     * @return viittaus atomiin
+     */
     public atomi viittausatomiin(int nro) {
         return vedyt[nro];
     }

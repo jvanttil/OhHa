@@ -30,16 +30,29 @@ public class aineistokasittelija {
         }
     }
     
+    /**
+     * täyttää paikkadatataulukkoa
+     * 
+     * staattinen paikkadatataulukko tallettaa jokaisen atomin sijainnin 
+     * jokaisena talletettavana ajan hetkenä (resoluution mukaan)
+     * 
+     * @param rivi mille riville laitetaan
+     * @param molindeksi monesko molekyyli on talletettavana
+     * @param luvut kuusi lukua, kolme per atomi ja x, y, z
+     */
     public static void laitapaikkadataan(int rivi, int molindeksi, double[] luvut) {
         for( int i = 0; i < 6; i++ ) {
             paikkadata[rivi][1+i+(6*molindeksi)] = luvut[i];
         }
     }
     
+    /**
+     * laittaa paikkadatataulun ruudulle niin että näkee et homma toimii
+     */
     public void ruudulle() {
         for( int i = 0; i < rivit; i++ ) {
             for( int j = 0; j < sarakkeet; j++ ) {
-                System.out.print(paikkadata[i][j] + " ");
+                System.out.printf("%.2f ", paikkadata[i][j]);
             }
             System.out.println("");
         }

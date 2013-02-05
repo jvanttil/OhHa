@@ -23,6 +23,9 @@ public class tekstikayttoliittyma {
         resoluutio = 10;
     }
     
+    /**
+     * hoitaa koko simulaatioproseduurin
+     */
     public void rullaa() {
         asetalaatikko();
         asetamolekyylit();
@@ -35,6 +38,9 @@ public class tekstikayttoliittyma {
         aineisto.ruudulle();
     }
     
+    /**
+     * kysyy käyttäjältä minkä kokoinen laatikko tehdään
+     */
     public void asetalaatikko() {
         boolean valmis = false;
         while( !valmis ) {
@@ -52,6 +58,9 @@ public class tekstikayttoliittyma {
         }
     }
     
+    /**
+     * kysyy käyttäjältä kuinka monta molekyyliä laitetaan laatikkoon
+     */
     public void asetamolekyylit() {
         boolean valmis = false;
         int yriteluku;
@@ -75,6 +84,9 @@ public class tekstikayttoliittyma {
         }
     }
     
+    /**
+     * kysyy käyttäjältä simulaation tarkkuuden eli aika-askelen koon
+     */
     public void asetaaskelkoko() {
         boolean valmis = false;
         double yriteluku;
@@ -93,6 +105,9 @@ public class tekstikayttoliittyma {
         }
     }
     
+    /**
+     * kysyy käyttäjältä simulaation pituuden eli askelten lukumäärän
+     */
     public void asetaaskelmaara() {
         boolean valmis = false;
         int yriteluku;
@@ -110,17 +125,5 @@ public class tekstikayttoliittyma {
             }
         }
     }
-    
-        /*
-        laatikko mesta = new laatikko();
-        if( mesta.mahtuuko(10.0,4) ) {
-            System.out.println("joo");
-        } else {
-            System.out.println("ei");
-        }
-        mesta.generoi(10.0,4);
-        mesta.perturboi();
-        mesta.simuloi(0.75,2000);
-        */
     
 }

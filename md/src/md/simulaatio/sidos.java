@@ -25,13 +25,19 @@ public class sidos {
         tasapaino = tsp;
     }
     
-    public void laskeetaisyydet() {
+    /**
+     * laskee sidoksen osapuolten etäisyydet koordinaattien suhteen
+     */
+    private void laskeetaisyydet() {
         etaisyysx = a1.annax() - a2.annax();
         etaisyysy = a1.annay() - a2.annay();
         etaisyysz = a1.annaz() - a2.annaz();
         etaisyys = Math.sqrt(etaisyysx*etaisyysx + etaisyysy*etaisyysy + etaisyysz*etaisyysz);
     }
     
+    /**
+     * kerryttää atomeille sidoksesta aiheutuvan voiman
+     */
     public void asetavoima() {
         laskeetaisyydet();
         voimax = (etaisyysx / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
