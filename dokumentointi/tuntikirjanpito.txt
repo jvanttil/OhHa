@@ -20,3 +20,4 @@
 			huom 1 kaavio vastaa kaikista
 			tilanteista
 2013-02-12	5.0 h grafiikan aloitus, kaavioiden parannukset
+		2.0 h kayttoliittymaan muutoksia, paljon testejä

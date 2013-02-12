@@ -90,4 +90,12 @@ public class aineistokasittelija {
     public static double haetaulukosta( int rivi, int sarake ) {
         return paikkadata[rivi][sarake];
     }
+    
+    public int annarivit() {
+        return rivit;
+    }
+    
+    public int annasarakkeet() {
+        return sarakkeet;
+    }
 }

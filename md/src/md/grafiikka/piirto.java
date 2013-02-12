@@ -3,7 +3,7 @@ package md.grafiikka;
 import javax.swing.*;
 
 /**
- * piirtää atomien liikkeen paikkadatataulusta ruudulle
+ * piirtää atomien liikkeen paikkadatataulusta ruudulle ikkunaan
  * @author jvanttil
  */
 public class piirto {
