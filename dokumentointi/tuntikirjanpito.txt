@@ -19,3 +19,4 @@
 		0.5 h sekvenssikaaviota
 			huom 1 kaavio vastaa kaikista
 			tilanteista
+2013-02-12	5.0 h grafiikan aloitus, kaavioiden parannukset
