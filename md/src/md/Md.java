@@ -11,7 +11,7 @@ public class Md {
     public static void main(String[] args) {
         
         tekstikayttoliittyma simu = new tekstikayttoliittyma();
-        simu.rullaa();
+        simu.aja();
         
     }
 }

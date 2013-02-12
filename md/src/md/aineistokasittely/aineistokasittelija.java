@@ -1,5 +1,8 @@
 package md.aineistokasittely;
 
+import java.io.File;
+import java.io.PrintWriter;
+
 /**
  * ottaa vastaan simulaatiosta lukuja ja tallettaa tiedostoon
  * @author jvanttil
@@ -32,19 +35,29 @@ public class aineistokasittelija {
     }
     
     /**
-     * täyttää paikkadatataulukkoa
+     * täyttää paikkadatataulukkoa atomien sijainneilla
      * 
      * staattinen paikkadatataulukko tallettaa jokaisen atomin sijainnin 
      * jokaisena talletettavana ajan hetkenä (resoluution mukaan)
      * 
-     * @param rivi mille riville laitetaan
+     * @param rivi taulukon tallennusrivi
      * @param molindeksi monesko molekyyli on talletettavana
-     * @param luvut kuusi lukua, kolme per atomi ja x, y, z
+     * @param luvut kuusi sijaintilukua järjestyksessä [x1,y1,z1,x2,y2,z2]
      */
     public static void laitapaikkadataan(int rivi, int molindeksi, double[] luvut) {
         for( int i = 0; i < 6; i++ ) {
             paikkadata[rivi][1+i+(6*molindeksi)] = luvut[i];
         }
+    }
+    
+    /**
+     * täyttää paikkadatataulukkoa ajalla
+     * 
+     * @param rivi taulukon tallennusrivi
+     * @param luku tallennettava luku (aika)
+     */
+    public static void laitaaikadataan(int rivi, double luku) {
+        paikkadata[rivi][0] = luku;
     }
     
     /**
@@ -57,5 +70,24 @@ public class aineistokasittelija {
             }
             System.out.println("");
         }
+    }
+    
+    public void tiedostoon(String tiedostonimi) {
+        try{
+            PrintWriter kirjoittaja = new PrintWriter(new File(tiedostonimi));
+            for( int i = 0; i < rivit; i++ ) {
+                for( int j = 0; j < sarakkeet; j++ ) {
+                    System.out.printf("%.4f ", paikkadata[i][j]);
+                }
+                System.out.println("");
+            }
+            kirjoittaja.close();
+        } catch (Exception e) {
+            System.out.println("Virhe tiedoston kirjoittamisessa!");
+        }
+    }
+    
+    public static double haetaulukosta( int rivi, int sarake ) {
+        return paikkadata[rivi][sarake];
     }
 }

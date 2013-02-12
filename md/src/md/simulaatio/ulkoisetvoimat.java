@@ -48,7 +48,7 @@ public class ulkoisetvoimat {
      * @param i atomi 1
      * @param j atomi 2
      */
-    public void laskeetaisyydet(int i, int j) {
+    private void laskeetaisyydet(int i, int j) {
         etaisyysx = atomit[i].annax() - atomit[j].annax();
         etaisyysy = atomit[i].annay() - atomit[j].annay();
         etaisyysz = atomit[i].annaz() - atomit[j].annaz();

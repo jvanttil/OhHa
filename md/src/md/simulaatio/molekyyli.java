@@ -26,8 +26,6 @@ public interface molekyyli {
     
     void perturboi(double x1,double y1,double z1,double x2,double y2,double z2);
     
-    String annasijainnit();
-    
-    double[] annasijainnit2();
+    double[] annasijainnit();
     
 }

@@ -110,17 +110,12 @@ public class vetykaasu implements molekyyli{
     public double annasijaintiy() { return (vedyt[0].annay()+vedyt[1].annay())/2.0; }
     public double annasijaintiz() { return (vedyt[0].annaz()+vedyt[1].annaz())/2.0; }
     
-    public String annasijainnit() {
-        String sijainnit = (String.format("%.4f",vedyt[0].annax())+" "+
-                String.format("%.4f",vedyt[0].annay())+" "+
-                String.format("%.4f",vedyt[0].annaz())+" "+
-                String.format("%.4f",vedyt[1].annax())+" "+
-                String.format("%.4f",vedyt[1].annay())+" "+
-                String.format("%.4f",vedyt[1].annaz()));
-        return sijainnit;
-    }
-    
-    public double[] annasijainnit2() {
+    /**
+     * palauttaa molekyylin atomien sijainnit taulukkona [x1,y1,z1,x2,y2,z2]
+     * 
+     * @return kuuden alkion taulukko atomien sijainneista [x1,y1,z1,x2,y2,z2]
+     */
+    public double[] annasijainnit() {
         double[] a = {vedyt[0].annax(),vedyt[0].annay(),vedyt[0].annaz(),vedyt[1].annax(),vedyt[1].annay(),vedyt[1].annaz()};
         return a;
     }

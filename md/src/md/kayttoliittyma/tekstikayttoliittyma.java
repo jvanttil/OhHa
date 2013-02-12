@@ -3,6 +3,7 @@ package md.kayttoliittyma;
 import java.util.Scanner;
 import md.simulaatio.laatikko;
 import md.aineistokasittely.aineistokasittelija;
+import md.grafiikka.piirto;
 
 /**
  * tekstikäyttöliittymä
@@ -19,6 +20,7 @@ public class tekstikayttoliittyma {
     private double askelkoko;
     private int askelmaara;
     private int resoluutio;
+    private piirto animaatio;
     
     public tekstikayttoliittyma(){
         ltk = new laatikko();
@@ -28,16 +30,26 @@ public class tekstikayttoliittyma {
     /**
      * hoitaa koko simulaatioproseduurin
      */
-    public void rullaa() {
-        asetalaatikko();
-        asetamolekyylit();
-        asetaaskelkoko();
-        asetaaskelmaara();
+    public void aja() {
+        alusta();
         aineisto = new aineistokasittelija(laatikonkoko,molekyylimaara,askelkoko,askelmaara,resoluutio);
         ltk.generoi(laatikonkoko,molekyylimaara);
         ltk.perturboi();
         ltk.simuloi(askelkoko,askelmaara,resoluutio);
         aineisto.ruudulle();
+        //aineisto.tiedostoon("ulos.txt");
+        animaatio = new piirto(molekyylimaara*2,laatikonkoko);
+        animaatio.aktivoi();
+    }
+    
+    /**
+     * kutsuu metodit, jotka kysyvät käyttäjältä simulaation parametrejä
+     */
+    public void alusta() {
+        asetalaatikko();
+        asetamolekyylit();
+        asetaaskelkoko();
+        asetaaskelmaara();
     }
     
     /**

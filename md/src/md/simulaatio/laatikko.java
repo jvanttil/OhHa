@@ -118,13 +118,19 @@ public class laatikko {
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].sisaiset(); }
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,koko); }
             if( i % resoluutio == 0 ) {
+                aineistokasittelija.laitaaikadataan((int)(i/resoluutio),i*dt);
                 for( int j = 0; j < molekyylilkm; j++ ) { 
-                    aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit2()); 
+                    aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit()); 
                 }
             }
         }
     }
     
+    /**
+     * laskee ja palauttaa molekyylien nopeuksien summan
+     * 
+     * @return laatikon molekyylien nopeuksien summa
+     */
     public double nopeussumma() {
         double summa = 0.0;
         for( int i = 0; i < molekyylilkm; i++ ) {
