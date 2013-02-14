@@ -11,11 +11,13 @@ public class piirto {
     private JFrame ruutu;
     private int atomilkm;
     private double laatikonkoko;
+    private int simulaatiopituus;
     
-    public piirto( int lkm, double koko ) {
+    public piirto( int atomilkm, double laatikonkoko, int simulaatiopituus ) {
         ruutu = new JFrame("ikkuna");
-        atomilkm = lkm;
-        laatikonkoko = koko;
+        this.atomilkm = atomilkm;
+        this.laatikonkoko = laatikonkoko;
+        this.simulaatiopituus = simulaatiopituus;
         ruutu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
@@ -23,7 +25,7 @@ public class piirto {
      * käynnistää piirtämisen
      */
     public void aktivoi() {
-        ruutu.getContentPane().add(new pallopaneeli(atomilkm,laatikonkoko));
+        ruutu.getContentPane().add(new kayttopaneeli(atomilkm,laatikonkoko,simulaatiopituus));
         ruutu.pack();
         ruutu.setVisible(true);
     }

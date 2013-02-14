@@ -22,6 +22,12 @@ public class pallo {
         page.fillOval(x,y,diameter,diameter);
     }
     
+    public void liikuta( int x, int y, int z ) {
+        this.x = x;
+        this.y = y;
+        this.diameter = z;
+    }
+    
     public void setdiameter( int sd ) {
         diameter = sd;
     }

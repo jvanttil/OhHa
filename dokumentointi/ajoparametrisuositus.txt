@@ -1,0 +1,4 @@
+laatikon koko 10.0
+molekyylim‰‰r‰ 8
+askelkoko 0.1 tai 0.2
+askelm‰‰r‰ 6000

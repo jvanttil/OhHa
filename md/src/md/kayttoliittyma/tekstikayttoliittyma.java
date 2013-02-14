@@ -20,6 +20,7 @@ public class tekstikayttoliittyma {
     private double askelkoko;
     private int askelmaara;
     private int resoluutio;
+    private int simulaatiopituus;
     private piirto animaatio;
     
     public tekstikayttoliittyma(){
@@ -35,10 +36,12 @@ public class tekstikayttoliittyma {
         aineisto = new aineistokasittelija(laatikonkoko,molekyylimaara,askelkoko,askelmaara,resoluutio);
         ltk.generoi(laatikonkoko,molekyylimaara);
         ltk.perturboi();
+        System.out.println("simuloidaan ");
         ltk.simuloi(askelkoko,askelmaara,resoluutio);
-        aineisto.ruudulle();
+        System.out.println("simulaatio valmis ");
+        //aineisto.ruudulle();
         //aineisto.tiedostoon("ulos.txt");
-        animaatio = new piirto(molekyylimaara*2,laatikonkoko);
+        animaatio = new piirto(molekyylimaara*2,laatikonkoko,simulaatiopituus);
         animaatio.aktivoi();
     }
     
@@ -166,6 +169,7 @@ public class tekstikayttoliittyma {
         int yriteluku = Integer.parseInt(syote);
         if( (yriteluku >= 100) && (yriteluku <= 10000) ) {
                 askelmaara = yriteluku;
+                simulaatiopituus = (int)(askelmaara/resoluutio);
                 return true;
         }
         return false;
@@ -175,5 +179,5 @@ public class tekstikayttoliittyma {
     public int annamolekyylimaara() { return molekyylimaara; }
     public double annaaskelkoko() { return askelkoko; }
     public double annaaskelmaara() { return askelmaara; }
-    
+    public int annasimulaatiopituus() { return simulaatiopituus; }
 }
