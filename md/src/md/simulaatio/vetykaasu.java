@@ -16,6 +16,7 @@ public class vetykaasu implements molekyyli{
     private int atomilkm = 2;
     private double tasapaino = 1.47;
     private double koko;
+    private double massa = 2.0;
     
     public vetykaasu() {
         vedyt = new vety[2];
@@ -38,19 +39,37 @@ public class vetykaasu implements molekyyli{
     public int annaatomilkm() {
         return atomilkm;
     }
+
+    /**
+     * laskee molekyylin nopeuden atomien nopeuksien keskiarvona.
+     */
+    public void laskenopeus() {
+        this.nopeus = (vedyt[0].annanopeusx()+vedyt[1].annanopeusx())/2.0+
+                    (vedyt[0].annanopeusy()+vedyt[1].annanopeusy())/2.0+
+                    (vedyt[0].annanopeusz()+vedyt[1].annanopeusz())/2.0;
+    }
+
+    public double annanopeus() { return Math.abs(nopeus); }
     
     /**
-     * laskee atomin kokonaisnopeuden ja myös palauttaa sen
+     * laskee molekyylin liike-energian kaavalla (1/2)*m*v^2
      * 
-     * @return atomin nopeus
+     * @return molekyylin liike-energia
      */
-    public double annanopeus() {
-        nopeus = (vedyt[0].annanopeusx()+vedyt[1].annanopeusx())/2.0+
-                (vedyt[0].annanopeusy()+vedyt[1].annanopeusy())/2.0+
-                (vedyt[0].annanopeusz()+vedyt[1].annanopeusz())/2.0;
-        return Math.abs(nopeus);
+    public double annaliikeenergia() {
+        laskenopeus();
+        return 0.5*this.massa*this.nopeus*this.nopeus;
     }
     
+    /**
+     * palauttaa molekyyliin kohdistuvien voimien kertymän
+     * 
+     * voimat pitää kerryttää ensin
+     * 
+     * käytetään potentiaalienergian laskemiseen
+     * 
+     * @return molekyyliin tällä hetkellä kerrytetyt voimavaikutukset
+     */
     public double annakertymasumma() {
         return Math.abs(vedyt[0].kertymax)+Math.abs(vedyt[0].kertymay)+Math.abs(vedyt[0].kertymaz)+
                 Math.abs(vedyt[1].kertymax)+Math.abs(vedyt[1].kertymay)+Math.abs(vedyt[1].kertymaz);
@@ -80,14 +99,23 @@ public class vetykaasu implements molekyyli{
      * @param dt aika-askeleen koko
      * @param koko laatikon koko
      */
-    public void liikuta(double dt,double koko) {
-        vedyt[0].liikuta(dt,koko);
-        vedyt[1].liikuta(dt,koko);
+    public void liikuta(double dt,double laatikonkoko) {
+        vedyt[0].liikuta(dt,laatikonkoko);
+        vedyt[1].liikuta(dt,laatikonkoko);
     }
     
-    public void perturboi(double x1,double y1,double z1,double x2,double y2,double z2) {
+    /**
+     * kohdistaa molekyyliin voiman satunnaiseen suuntaan
+     * laatikko kutsuu tätä metodia
+     * tekee simulaatio-ajoista satunnaisia
+     * 
+     * @param x1 voima x-suunnassa
+     * @param y1 voima y-suunnassa
+     * @param z1 voima z-suunnassa
+     */
+    public void perturboi(double x1,double y1,double z1) {
         vedyt[0].kerryta(x1,y1,z1);
-        vedyt[1].kerryta(x2,y2,z2);
+        vedyt[1].kerryta(x1,y1,z1);
     }
     
     public double annaetaisyys() {
@@ -106,9 +134,9 @@ public class vetykaasu implements molekyyli{
         return vedyt[nro];
     }
     
-    public double annasijaintix() { return (vedyt[0].annax()+vedyt[1].annax())/2.0; }
-    public double annasijaintiy() { return (vedyt[0].annay()+vedyt[1].annay())/2.0; }
-    public double annasijaintiz() { return (vedyt[0].annaz()+vedyt[1].annaz())/2.0; }
+    public double annasijaintix( int nro ) { return vedyt[nro].annax(); }
+    public double annasijaintiy( int nro ) { return vedyt[nro].annay(); }
+    public double annasijaintiz( int nro ) { return vedyt[nro].annaz(); }
     
     /**
      * palauttaa molekyylin atomien sijainnit taulukkona [x1,y1,z1,x2,y2,z2]

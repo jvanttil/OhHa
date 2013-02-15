@@ -10,7 +10,7 @@ import md.aineistokasittely.aineistokasittelija;
  */
 public class laatikko {
     
-    private double koko;
+    private double laatikonkoko;
     private int molekyylilkm;
     private int atomilkm;
     private int ruudukonkoko;
@@ -19,8 +19,8 @@ public class laatikko {
     private Random rng;
     
     public laatikko() {
-        atomilkm = 0;
-        rng = new Random();
+        this.atomilkm = 0;
+        this.rng = new Random();
     }
     
     /**
@@ -52,14 +52,14 @@ public class laatikko {
      * @param skoko laatikon koko
      * @param smolekyylilkm molekyylien määrä laatikossa
      */
-    private void asetaparametrit(double skoko, int smolekyylilkm) {
-        koko = skoko;
-        molekyylilkm = smolekyylilkm;
-        molekyylilista = new molekyyli[molekyylilkm];
-        voimarekisteri = new ulkoisetvoimat(molekyylilkm*2);
-        ruudukonkoko = 1;
-        while( Math.pow(ruudukonkoko,3) < molekyylilkm ) {
-            ruudukonkoko += 1;
+    private void asetaparametrit(double laatikonkoko, int molekyylilkm) {
+        this.laatikonkoko = laatikonkoko;
+        this.molekyylilkm = molekyylilkm;
+        this.molekyylilista = new molekyyli[this.molekyylilkm];
+        this.voimarekisteri = new ulkoisetvoimat(this.molekyylilkm*2);
+        this.ruudukonkoko = 1;
+        while( Math.pow(this.ruudukonkoko,3) < this.molekyylilkm ) {
+            this.ruudukonkoko += 1;
         }
     }
     
@@ -71,17 +71,17 @@ public class laatikko {
      * @param skoko laatikon koko
      * @param smolekyylilkm molekyylien määrä laatikossa
      */
-    public void generoi(double skoko, int smolekyylilkm) {
-        asetaparametrit(skoko,smolekyylilkm);
-        int kohta = ruudukonkoko + 1;
+    public void generoi(double laatikonkoko, int molekyylilkm) {
+        asetaparametrit(laatikonkoko,molekyylilkm);
+        int kohta = this.ruudukonkoko + 1;
         int laskuri = 0;
         for( int i = 1; i < kohta; i++ ) {
             for( int j = 1; j < kohta; j++ ) {
                 for( int k = 1; k < kohta; k++ ) {
-                    molekyylilista[laskuri] = new vetykaasu((double)i*(koko/kohta),(double)j*(koko/kohta),(double)k*(koko/kohta));
-                    atomilkm += molekyylilista[laskuri].annaatomilkm();
-                    for( int l = 0; l < molekyylilista[laskuri].annaatomilkm(); l++ ) {
-                        voimarekisteri.laitaatomirekisteriin(molekyylilista[laskuri].viittausatomiin(l),laskuri);
+                    this.molekyylilista[laskuri] = new vetykaasu((double)i*(laatikonkoko/kohta),(double)j*(laatikonkoko/kohta),(double)k*(laatikonkoko/kohta));
+                    this.atomilkm += this.molekyylilista[laskuri].annaatomilkm();
+                    for( int l = 0; l < this.molekyylilista[laskuri].annaatomilkm(); l++ ) {
+                       this.voimarekisteri.laitaatomirekisteriin(this.molekyylilista[laskuri].viittausatomiin(l),laskuri);
                     }
                     laskuri += 1;
                     if(laskuri == molekyylilkm) { break; }
@@ -97,14 +97,14 @@ public class laatikko {
      */
     public void perturboi() {
         // perturbaatio siirtyy pallokoordinaatistoon kunhan ehtii
-        for( int i = 0; i < molekyylilkm; i++ ) {
-            molekyylilista[i].perturboi(0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.0,0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.0);
+        for( int i = 0; i < this.molekyylilkm; i++ ) {
+            this.molekyylilista[i].perturboi(0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.05*rng.nextGaussian());
         }
     }
     
     /**
      * ajaa koko simulaation
-     * 
+     * §
      * laskee ensin ulkoiset voimat, sitten sisäiset voimat ja sitten liikuttaa
      * kaikkia molekyylejä
      * 
@@ -116,13 +116,26 @@ public class laatikko {
         for( int i = 0; i < askelia; i++ ) {
             voimarekisteri.ulkoiset();
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].sisaiset(); }
-            for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,koko); }
+            for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,laatikonkoko); }
             if( i % resoluutio == 0 ) {
                 aineistokasittelija.laitaaikadataan((int)(i/resoluutio),i*dt);
                 for( int j = 0; j < molekyylilkm; j++ ) { 
                     aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit()); 
+                    aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j,molekyylilista[j].annaliikeenergia());
                 }
             }
+        }
+    }
+    
+    public double annasijainti( int molekyyli, int atomi, int koordinaatti ) {
+        if( koordinaatti == 0 ) {
+            return molekyylilista[molekyyli].annasijaintix(atomi);
+        } else if ( koordinaatti == 1 ) {
+            return molekyylilista[molekyyli].annasijaintiy(atomi);
+        } else if ( koordinaatti == 2 ) {
+            return molekyylilista[molekyyli].annasijaintiy(atomi);
+        } else {
+            return 0.0;
         }
     }
     

@@ -43,7 +43,7 @@ public class simulaatiotesti {
     @Test
     public void voimakertyy() {
         assertTrue(this.vk.annakertymasumma()==0.0);
-        this.vk.perturboi(0.01,0.003,-0.03,0.1,-0.009,-0.04);
+        this.vk.perturboi(0.01,0.003,-0.03);
         assertFalse(this.vk.annakertymasumma()==0.0);
     }
     
@@ -51,7 +51,7 @@ public class simulaatiotesti {
     public void kertymanollautuu() {
         double askel = 0.01;
         double koko = 10.0;
-        this.vk.perturboi(0.01,0.003,-0.03,0.1,-0.009,-0.04);
+        this.vk.perturboi(0.01,0.003,-0.03);
         this.vk.sisaiset();
         this.vk.liikuta(askel,koko);
         assertTrue(this.vk.annakertymasumma()==0.0);
@@ -60,8 +60,8 @@ public class simulaatiotesti {
     @Test
     public void kertymakasautuu() {
         double lisays = 0.1;
-        this.vk.perturboi(lisays,lisays,lisays,lisays,lisays,lisays);
-        this.vk.perturboi(lisays,lisays,lisays,lisays,lisays,lisays);
+        this.vk.perturboi(lisays,lisays,lisays);
+        this.vk.perturboi(lisays,lisays,lisays);
         assertTrue(Math.abs(this.vk.annakertymasumma()-lisays*12)<0.0000000000001);
     }
     
@@ -70,7 +70,7 @@ public class simulaatiotesti {
         double askel = 0.01;
         double koko = 10.0;
         double nopeustalteen;
-        this.vk.perturboi(0.02,-0.03,-0.03,0.01,-0.09,-0.04);
+        this.vk.perturboi(0.02,-0.03,-0.03);
         this.vk.sisaiset();
         this.vk.liikuta(askel,koko);
         nopeustalteen = this.vk.annanopeus();
@@ -82,7 +82,7 @@ public class simulaatiotesti {
     public void liikkuukoatomit() {
         double askel = 0.01;
         double koko = 10.0;
-        this.vk.perturboi(0.01,0.003,-0.03,0.1,-0.009,-0.04);
+        this.vk.perturboi(0.01,0.003,-0.03);
         this.vk.sisaiset();
         this.vk.liikuta(askel,koko);
         assertTrue(vk.annanopeus()!=0.0);
@@ -92,14 +92,14 @@ public class simulaatiotesti {
     public void pysyylaatikossa() {
         double koko = 4.0;
         double askel = 0.5;
-        this.vk.perturboi(0.02,0.03,-0.08,0.1,-0.01,-0.03);
+        this.vk.perturboi(0.02,0.03,-0.08);
         for( int i = 0; i < 300; i++ ) {
             this.vk.sisaiset();
             this.vk.liikuta(askel,koko);
         }
-        assertTrue((vk.annasijaintix() < koko)&&(vk.annasijaintiz() > 0.0));
-        assertTrue((vk.annasijaintiy() < koko)&&(vk.annasijaintiy() > 0.0));
-        assertTrue((vk.annasijaintiz() < koko)&&(vk.annasijaintiz() > 0.0));
+        assertTrue((vk.annasijaintix(0) < koko)&&(vk.annasijaintix(0) > 0.0));
+        assertTrue((vk.annasijaintiy(0) < koko)&&(vk.annasijaintiy(0) > 0.0));
+        assertTrue((vk.annasijaintiz(0) < koko)&&(vk.annasijaintiz(0) > 0.0));
     }
     
     @Test
@@ -107,7 +107,7 @@ public class simulaatiotesti {
         double koko = 10.0;
         double askel = 0.5;
         double maksimietaisyys = 1.47;
-        this.vk.perturboi(-0.03,0.03,-0.08,-0.1,0.07,-0.04);
+        this.vk.perturboi(-0.03,0.03,-0.08);
         for( int i = 0; i < 300; i++ ) {
             this.vk.sisaiset();
             this.vk.liikuta(askel,koko);
@@ -123,7 +123,7 @@ public class simulaatiotesti {
         double koko = 10.0;
         double askel = 0.5;
         double minimietaisyys = 1.47;
-        this.vk.perturboi(-0.03,0.03,-0.08,-0.1,0.07,-0.04);
+        this.vk.perturboi(-0.03,0.03,-0.08);
         for( int i = 0; i < 300; i++ ) {
             this.vk.sisaiset();
             this.vk.liikuta(askel,koko);
@@ -141,7 +141,7 @@ public class simulaatiotesti {
         double askelmaara = 600;
         double kumulatiivinenetaisyys = 0.0;
         double keskietaisyys;
-        this.vk.perturboi(-0.03,0.03,-0.08,-0.1,0.07,-0.04);
+        this.vk.perturboi(-0.03,0.03,-0.084);
         for( int i = 0; i < askelmaara; i++ ) {
             this.vk.sisaiset();
             this.vk.liikuta(askel,koko);

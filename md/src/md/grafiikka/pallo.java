@@ -12,7 +12,7 @@ public class pallo {
     
     public pallo() {
         diameter = 10;
-        color = Color.white;
+        color = Color.gray;
         x = 0;
         y = 0;
     }
@@ -23,9 +23,10 @@ public class pallo {
     }
     
     public void liikuta( int x, int y, int z ) {
-        this.x = x;
-        this.y = y;
         this.diameter = z;
+        this.x = x-(int)(diameter/2);
+        this.y = y-(int)(diameter/2);
+        
     }
     
     public void setdiameter( int sd ) {

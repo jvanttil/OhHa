@@ -80,19 +80,19 @@ public class atomi {
      * tarkistaa ovatko uudet sijainnit yhä laatikon sisällä ja kimmottaa 
      * atomin laatikon reunoista, jos näin ei ole
      * 
-     * @param koko laatikon koko
+     * @param laatikonkoko laatikon koko
      */
-    private void tarkistareunat(double koko) {
-        if( uusisijaintix > koko ) {
-            uusisijaintix = 2.0*koko - uusisijaintix;
+    private void tarkistareunat(double laatikonkoko) {
+        if( uusisijaintix > laatikonkoko ) {
+            uusisijaintix = 2.0*laatikonkoko - uusisijaintix;
             uusinopeusx = -1.0*uusinopeusx;
         }
-        if( uusisijaintiy > koko ) {
-            uusisijaintiy = 2.0*koko - uusisijaintiy;
+        if( uusisijaintiy > laatikonkoko ) {
+            uusisijaintiy = 2.0*laatikonkoko - uusisijaintiy;
             uusinopeusy = -1.0*uusinopeusy;
         }
-        if( uusisijaintiz > koko ) {
-            uusisijaintiz = 2.0*koko - uusisijaintiz;
+        if( uusisijaintiz > laatikonkoko ) {
+            uusisijaintiz = 2.0*laatikonkoko - uusisijaintiz;
             uusinopeusz = -1.0*uusinopeusz;
         }
         if( uusisijaintix < 0 ) {
@@ -117,11 +117,11 @@ public class atomi {
      * vaikuttavat voimat seuraavan askeleen laskemista varten
      * 
      * @param dt aika-askeleen pituus
-     * @param koko laatikon koko
+     * @param laatikonkoko laatikon koko
      */
-    public void liikuta(double dt,double koko) {
+    public void liikuta(double dt,double laatikonkoko) {
         laskeuudet(dt);
-        tarkistareunat(koko);
+        tarkistareunat(laatikonkoko);
         sijaintix = uusisijaintix;
         sijaintiy = uusisijaintiy;
         sijaintiz = uusisijaintiz;

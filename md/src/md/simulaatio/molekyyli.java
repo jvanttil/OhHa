@@ -10,21 +10,23 @@ public interface molekyyli {
     
     double annakoko();
     
-    double annasijaintix();
+    double annasijaintix( int nro );
     
-    double annasijaintiy();
+    double annasijaintiy( int nro );
     
-    double annasijaintiz();
+    double annasijaintiz( int nro );
     
     double annanopeus();
     
+    double annaliikeenergia();
+    
     void sisaiset();
     
-    void liikuta(double dt,double koko);
+    void liikuta(double dt,double laatikonkoko);
     
     atomi viittausatomiin(int nro);
     
-    void perturboi(double x1,double y1,double z1,double x2,double y2,double z2);
+    void perturboi(double x1,double y1,double z1);
     
     double[] annasijainnit();
     
