@@ -38,7 +38,7 @@ public class pallopaneeli extends JPanel {
         }
         this.laatikonkoko = laatikonkoko;
         setPreferredSize( new Dimension( ikkunankoko, ikkunankoko ));
-        setBackground( Color.black );
+        setBackground( Color.gray );
         ajastin = new Timer(intervalli, new ajastintoiminto());
     }
     
@@ -65,12 +65,6 @@ public class pallopaneeli extends JPanel {
     }
     
     class ajastintoiminto implements ActionListener {
-        //================================================== actionPerformed
-        /** ActionListener of the timer.  Each time this is called,
-         *  the ball's position is updated, creating the appearance of
-         *  movement.
-         *@param e This ActionEvent parameter is unused.
-         */
         public void actionPerformed(ActionEvent e) {
             //pallot[0].setBounds(getWidth(), getHeight());
             for( int i = 0; i < pallolkm; i++ ) {

@@ -37,14 +37,17 @@ public class simulaatiotesti {
     @Test
     public void tasapainopysyy() {
         this.vk.sisaiset();
-        assertTrue(vk.annakertymasumma()<0.00000000000001);
+        assertTrue(vk.annakertymasumma(0)<0.00000000000001);
+        assertTrue(vk.annakertymasumma(1)<0.00000000000001);
     }
     
     @Test
     public void voimakertyy() {
-        assertTrue(this.vk.annakertymasumma()==0.0);
+        assertTrue(this.vk.annakertymasumma(0)==0.0);
+        assertTrue(this.vk.annakertymasumma(1)==0.0);
         this.vk.perturboi(0.01,0.003,-0.03);
-        assertFalse(this.vk.annakertymasumma()==0.0);
+        assertFalse(this.vk.annakertymasumma(0)==0.0);
+        assertFalse(this.vk.annakertymasumma(1)==0.0);
     }
     
     @Test 
@@ -54,7 +57,8 @@ public class simulaatiotesti {
         this.vk.perturboi(0.01,0.003,-0.03);
         this.vk.sisaiset();
         this.vk.liikuta(askel,koko);
-        assertTrue(this.vk.annakertymasumma()==0.0);
+        assertTrue(this.vk.annakertymasumma(0)==0.0);
+        assertTrue(this.vk.annakertymasumma(1)==0.0);
     }
     
     @Test
@@ -62,7 +66,8 @@ public class simulaatiotesti {
         double lisays = 0.1;
         this.vk.perturboi(lisays,lisays,lisays);
         this.vk.perturboi(lisays,lisays,lisays);
-        assertTrue(Math.abs(this.vk.annakertymasumma()-lisays*12)<0.0000000000001);
+        assertTrue(Math.abs(this.vk.annakertymasumma(0)-lisays*12)<0.0000000000001);
+        assertTrue(Math.abs(this.vk.annakertymasumma(1)-lisays*12)<0.0000000000001);
     }
     
     @Test
@@ -85,6 +90,7 @@ public class simulaatiotesti {
         this.vk.perturboi(0.01,0.003,-0.03);
         this.vk.sisaiset();
         this.vk.liikuta(askel,koko);
+        this.vk.laskenopeus();
         assertTrue(vk.annanopeus()!=0.0);
     }
     

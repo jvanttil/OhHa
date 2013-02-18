@@ -41,9 +41,9 @@ public class sidos {
      */
     public void asetavoima() {
         laskeetaisyydet();
-        voimax = (etaisyysx / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
-        voimay = (etaisyysy / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
-        voimaz = (etaisyysz / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
+        voimax = 0.5*(etaisyysx / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
+        voimay = 0.5*(etaisyysy / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
+        voimaz = 0.5*(etaisyysz / etaisyys)*jousivakio*(etaisyys-tasapaino)*(etaisyys-tasapaino);
         if( etaisyys > tasapaino ) {
             a1.kerryta(-1.0*voimax,-1.0*voimay,-1.0*voimaz);
             a2.kerryta(voimax,voimay,voimaz);

@@ -10,29 +10,35 @@ import java.io.PrintWriter;
 public class aineistokasittelija {
     
     private double laatikonkoko;
-    private int molekyylimaara;
+    private int molekyylilkm;
     private double askelkoko;
     private int askelmaara;
     private int resoluutio;
-    private int rivit;
-    private int paikkasarakkeet;
-    private int liikeenergiasarakkeet;
+    private static int rivit;
+    private static int paikkasarakkeet;
+    private static int energiasarakkeet;
     private static double[] aikadata;
     private static double[][] paikkadata;
     private static double[][] liikeenergiadata;
+    private static double[] liikeenergiakeskiarvot;
+    private static double[][] potentiaalienergiadata;
+    private static double[] potentiaalienergiakeskiarvot;
     
-    public aineistokasittelija(double ltkoko, int mollkm, double dt, int steps, int reso) {
-        laatikonkoko = ltkoko;
-        molekyylimaara = mollkm;
+    public aineistokasittelija(double laatikonkoko, int molekyylilkm, double dt, int steps, int resoluutio) {
+        this.laatikonkoko = laatikonkoko;
+        this.molekyylilkm = molekyylilkm;
         askelkoko = dt;
         askelmaara = steps;
-        resoluutio = reso;
+        this.resoluutio = resoluutio;
         rivit = (int)(askelmaara/resoluutio);
-        paikkasarakkeet = molekyylimaara*3*2;
-        liikeenergiasarakkeet = molekyylimaara;
+        paikkasarakkeet = this.molekyylilkm*3*2;
+        energiasarakkeet = this.molekyylilkm*2;
         paikkadata = new double[rivit][paikkasarakkeet];
         aikadata = new double[rivit];
-        liikeenergiadata = new double[rivit][liikeenergiasarakkeet];
+        liikeenergiadata = new double[rivit][energiasarakkeet];
+        liikeenergiakeskiarvot = new double[rivit];
+        potentiaalienergiadata = new double[rivit][energiasarakkeet];
+        potentiaalienergiakeskiarvot = new double[rivit];
         alustataulukot();
     }
     
@@ -41,12 +47,15 @@ public class aineistokasittelija {
      */
     private void alustataulukot() {
         for( int i = 0; i < rivit; i++ ) {
-            aikadata[i] = 0;
+            aikadata[i] = 0.0;
+            liikeenergiakeskiarvot[i] = 0.0;
+            potentiaalienergiakeskiarvot[i] = 0.0;
             for( int j = 0; j < paikkasarakkeet; j++ ) {
                 paikkadata[i][j] = 0.0;
             }
-            for( int j = 0; j < liikeenergiasarakkeet; j++ ) {
+            for( int j = 0; j < energiasarakkeet; j++ ) {
                 liikeenergiadata[i][j] = 0.0;
+                potentiaalienergiadata[i][j] = 0.0;
             }
         }
     }
@@ -93,6 +102,21 @@ public class aineistokasittelija {
         liikeenergiadata[rivi][sarake] = luku;
     }
     
+    public static void laitapotentiaalienergiadataan( int rivi, int sarake, double luku ) {
+        potentiaalienergiadata[rivi][sarake] = luku;
+    }
+    
+    public static void laskekeskiarvot() {
+        for( int i = 0; i < rivit; i++ ) {
+            for( int j = 0; j < energiasarakkeet; j++ ) {
+                liikeenergiakeskiarvot[i] += liikeenergiadata[i][j];
+                potentiaalienergiakeskiarvot[i] += potentiaalienergiadata[i][j];
+            }
+            liikeenergiakeskiarvot[i] = liikeenergiakeskiarvot[i]/energiasarakkeet;
+            potentiaalienergiakeskiarvot[i] = potentiaalienergiakeskiarvot[i]/energiasarakkeet;
+        }
+    }
+    
     /**
      * laittaa paikkadatataulun ruudulle niin että näkee et homma toimii
      */
@@ -118,11 +142,11 @@ public class aineistokasittelija {
         try{
             PrintWriter kirjoittaja = new PrintWriter(new File(tiedostonimi));
             for( int i = 0; i < rivit; i++ ) {
-                System.out.printf("%.4f ", aikadata[i]);
+                kirjoittaja.printf("%.4f ", aikadata[i]);
                 for( int j = 0; j < paikkasarakkeet; j++ ) {
-                    System.out.printf("%.4f ", paikkadata[i][j]);
+                    kirjoittaja.printf("%.4f ", paikkadata[i][j]);
                 }
-                System.out.println("");
+                kirjoittaja.println("");
             }
             kirjoittaja.close();
         } catch (Exception e) {
@@ -136,8 +160,23 @@ public class aineistokasittelija {
     public void liikeenergiadataruudulle() {
         for( int i = 0; i < rivit; i++ ) {
             System.out.printf("%.2f ", aikadata[i]);
-            for( int j = 0; j < liikeenergiasarakkeet; j++ ) {
-                System.out.printf("%.3f ", liikeenergiadata[i][j]*100);
+            System.out.printf("%.5f ", liikeenergiakeskiarvot[i]);
+            for( int j = 0; j < energiasarakkeet; j++ ) {
+                System.out.printf("%.5f ", liikeenergiadata[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+    
+    /**
+     * tulostaa tannennetut potentiaalienergiat ruudulle
+     */
+    public void potentiaalienergiadataruudulle() {
+        for( int i = 0; i < rivit; i++ ) {
+            System.out.printf("%.2f ", aikadata[i]);
+            System.out.printf("%.5f ", potentiaalienergiakeskiarvot[i]);
+            for( int j = 0; j < energiasarakkeet; j++ ) {
+                System.out.printf("%.5f ", potentiaalienergiadata[i][j]);
             }
             System.out.println("");
         }
@@ -156,6 +195,14 @@ public class aineistokasittelija {
         return paikkadata[rivi][sarake];
     }
     
+    public static double haeliikeenergia( int rivi ) {
+        return liikeenergiakeskiarvot[rivi];
+    }
+    
+    public static double haepotentiaalienergia( int rivi ) {
+        return potentiaalienergiakeskiarvot[rivi];
+    }
+    
     public int annarivit() {
         return rivit;
     }
@@ -163,4 +210,29 @@ public class aineistokasittelija {
     public int annapaikkadatasarakkeet() {
         return paikkasarakkeet;
     }
+    
+    public static double annamaksimiliikeenergia() {
+        double maksimi = 0.0;
+        for( int i = 0; i < rivit; i++ ) {
+            for( int j = 0; j < energiasarakkeet; j++ ) {
+                if( liikeenergiadata[i][j] > maksimi ) {
+                    maksimi = liikeenergiadata[i][j];
+                }
+            }
+        }
+        return maksimi;
+    }
+    
+    public static double annamaksimipotentiaalienergia() {
+        double maksimi = 0.0;
+        for( int i = 1; i < rivit; i++ ) {
+            for( int j = 0; j < energiasarakkeet; j++ ) {
+                if( potentiaalienergiadata[i][j] > maksimi ) {
+                    maksimi = potentiaalienergiadata[i][j];
+                }
+            }
+        }
+        return maksimi;
+    }
+    
 }

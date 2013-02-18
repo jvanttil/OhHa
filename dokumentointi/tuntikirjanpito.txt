@@ -23,3 +23,5 @@
 		2.0 h kayttoliittymaan muutoksia, paljon testej‰
 2013-02-14	2.0 h grafiikka toimii jotenkuten
 2013-02-15	1.0 h grafiikkaa p‰ivitetty
+2013-02-16	1.0 h energioiden laskentaa
+2013-02-17	2.0 h lis‰‰ grafiikkaa

@@ -18,7 +18,11 @@ public interface molekyyli {
     
     double annanopeus();
     
-    double annaliikeenergia();
+    double annaliikeenergia( int nro );
+    
+    double annakertymasumma( int nro );
+    
+    void laskenopeus();
     
     void sisaiset();
     

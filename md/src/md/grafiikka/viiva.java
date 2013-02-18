@@ -18,7 +18,7 @@ public class viiva {
         y1 = 0;
         x2 = 0;
         y2 = 0;
-        color = Color.gray;
+        color = Color.black;
     }
     
     public void draw( Graphics page ) {

@@ -17,6 +17,7 @@ public class laatikko {
     private molekyyli[] molekyylilista;
     private ulkoisetvoimat voimarekisteri;
     private Random rng;
+    public double muunnoskerroin = 0.45;
     
     public laatikko() {
         this.atomilkm = 0;
@@ -116,14 +117,17 @@ public class laatikko {
         for( int i = 0; i < askelia; i++ ) {
             voimarekisteri.ulkoiset();
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].sisaiset(); }
-            for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,laatikonkoko); }
             if( i % resoluutio == 0 ) {
                 aineistokasittelija.laitaaikadataan((int)(i/resoluutio),i*dt);
                 for( int j = 0; j < molekyylilkm; j++ ) { 
                     aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit()); 
-                    aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j,molekyylilista[j].annaliikeenergia());
+                    aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j*2,muunnoskerroin*molekyylilista[j].annaliikeenergia(0));
+                    aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j*2+1,muunnoskerroin*molekyylilista[j].annaliikeenergia(1));
+                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2,dt*muunnoskerroin*molekyylilista[j].annakertymasumma(0));
+                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2+1,dt*muunnoskerroin*molekyylilista[j].annakertymasumma(1));
                 }
             }
+            for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,laatikonkoko); }
         }
     }
     
@@ -147,6 +151,7 @@ public class laatikko {
     public double nopeussumma() {
         double summa = 0.0;
         for( int i = 0; i < molekyylilkm; i++ ) {
+            molekyylilista[i].laskenopeus();
             summa += molekyylilista[i].annanopeus();
         }
         return summa;

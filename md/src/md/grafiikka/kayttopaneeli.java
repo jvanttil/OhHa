@@ -10,6 +10,7 @@ import javax.swing.*;
 public class kayttopaneeli extends JPanel{
     
     private pallopaneeli pallopaneeli;
+    private graafipaneeli graafipaneeli;
     private int atomilkm;
     private double laatikonkoko;
     private int simulaatiopituus;
@@ -19,6 +20,7 @@ public class kayttopaneeli extends JPanel{
         this.laatikonkoko = laatikonkoko;
         this.simulaatiopituus = simulaatiopituus;
         pallopaneeli = new pallopaneeli(atomilkm,laatikonkoko,simulaatiopituus);
+        graafipaneeli = new graafipaneeli(simulaatiopituus);
         JButton kaynnistysnappi = new JButton("kaynnista");
         JButton pysaytysnappi = new JButton("pysayta");
         kaynnistysnappi.addActionListener(new kaynnistystoiminto());
@@ -30,6 +32,7 @@ public class kayttopaneeli extends JPanel{
         this.setLayout(new BorderLayout());
         this.add(nappipaneeli,BorderLayout.NORTH);
         this.add(pallopaneeli,BorderLayout.CENTER);
+        this.add(graafipaneeli,BorderLayout.EAST);
     }
     
     class kaynnistystoiminto implements ActionListener {

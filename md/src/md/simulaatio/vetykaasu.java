@@ -56,9 +56,9 @@ public class vetykaasu implements molekyyli{
      * 
      * @return molekyylin liike-energia
      */
-    public double annaliikeenergia() {
-        laskenopeus();
-        return 0.5*this.massa*this.nopeus*this.nopeus;
+    public double annaliikeenergia( int nro ) {
+        double n = Math.sqrt((vedyt[nro].nopeusx*vedyt[nro].nopeusx)+(vedyt[nro].nopeusy*vedyt[nro].nopeusy)+(vedyt[nro].nopeusz*vedyt[nro].nopeusz));
+        return 0.5*this.massa*n*n;
     }
     
     /**
@@ -70,9 +70,10 @@ public class vetykaasu implements molekyyli{
      * 
      * @return molekyyliin tällä hetkellä kerrytetyt voimavaikutukset
      */
-    public double annakertymasumma() {
-        return Math.abs(vedyt[0].kertymax)+Math.abs(vedyt[0].kertymay)+Math.abs(vedyt[0].kertymaz)+
-                Math.abs(vedyt[1].kertymax)+Math.abs(vedyt[1].kertymay)+Math.abs(vedyt[1].kertymaz);
+    public double annakertymasumma( int nro ) {
+        return Math.sqrt((vedyt[nro].kertymax*vedyt[nro].kertymax)+
+                (vedyt[nro].kertymay*vedyt[nro].kertymay)+
+                (vedyt[nro].kertymaz*vedyt[nro].kertymaz));
     }
     
     public double annakoko() {

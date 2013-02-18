@@ -11,10 +11,17 @@ public class pallo {
     private Color color;
     
     public pallo() {
-        diameter = 10;
-        color = Color.gray;
-        x = 0;
-        y = 0;
+        this.diameter = 10;
+        this.color = Color.black;
+        this.x = 0;
+        this.y = 0;
+    }
+    
+    public pallo( int x, int y, Color color, int diameter ) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.diameter = diameter;
     }
     
     public void draw( Graphics page ) {

@@ -51,7 +51,7 @@ public class aineistotesti {
         aineistokasittelija.laitapaikkadataan( 0, 0, syote1 );
         aineistokasittelija.laitapaikkadataan( 1, 0, syote2 );
         double summa = 0.0;
-        for( int i = 1; i < aineisto.annapaikkadatasarakkeet(); i++ ) {
+        for( int i = 0; i < aineisto.annapaikkadatasarakkeet(); i++ ) {
             for( int j = 0; j < aineisto.annarivit(); j++ ) {
                 summa += aineistokasittelija.haetaulukosta( j, i );
             }

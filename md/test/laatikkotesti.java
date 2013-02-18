@@ -1,4 +1,5 @@
 import md.simulaatio.laatikko;
+import md.aineistokasittely.aineistokasittelija;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -44,15 +45,27 @@ public class laatikkotesti {
     
     @Test
     public void ulkoinenvoimatoimiiheti() {
-        koelaatikko.generoi(10.0,2);
-        koelaatikko.simuloi(0.01,1,1);
+        double laatikonkoko = 10.0;
+        int molekyylilkm = 2;
+        double askelkoko = 0.01;
+        int askellkm = 1;
+        int resoluutio = 1;
+        aineistokasittelija aineisto = new aineistokasittelija(laatikonkoko,molekyylilkm,askelkoko,askellkm,resoluutio);
+        koelaatikko.generoi(laatikonkoko,molekyylilkm);
+        koelaatikko.simuloi(askelkoko,askellkm,resoluutio);
         assertTrue(koelaatikko.nopeussumma() > 0.0);
     }
     
     @Test
     public void ulkoinenvoimaeitoimisisaisesti() {
-        koelaatikko.generoi(10.0,1);
-        koelaatikko.simuloi(0.01,10,1);
+        double laatikonkoko = 10.0;
+        int molekyylilkm = 1;
+        double askelkoko = 0.01;
+        int askellkm = 10;
+        int resoluutio = 1;
+        aineistokasittelija aineisto = new aineistokasittelija(laatikonkoko,molekyylilkm,askelkoko,askellkm,resoluutio);
+        koelaatikko.generoi(laatikonkoko,molekyylilkm);
+        koelaatikko.simuloi(askelkoko,askellkm,resoluutio);
         assertTrue(koelaatikko.nopeussumma() == 0.0);
     }
     

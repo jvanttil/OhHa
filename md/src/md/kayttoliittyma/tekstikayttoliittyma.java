@@ -39,9 +39,10 @@ public class tekstikayttoliittyma {
         System.out.println("simuloidaan ");
         ltk.simuloi(askelkoko,askelmaara,resoluutio);
         System.out.println("simulaatio valmis ");
-        //aineisto.paikkadataruudulle();
-        //aineisto.paikkadatatiedostoon("ulos.txt");
-        aineisto.liikeenergiadataruudulle();
+        aineisto.paikkadatatiedostoon("paikat.txt");
+        System.out.println("atomien sijainnit kirjoitettu tiedostoon paikat.txt");
+        aineisto.laskekeskiarvot();
+        System.out.println("liike-energian maksimi " + aineistokasittelija.annamaksimiliikeenergia());
         animaatio = new piirto(molekyylimaara*2,laatikonkoko,simulaatiopituus);
         animaatio.aktivoi();
         
@@ -62,7 +63,7 @@ public class tekstikayttoliittyma {
      */
     private void kysylaatikonkoko() {
         while( true ) {
-            System.out.println("Minkä kokoinen laatikko tehdään? (minimi 10.0 maksimi 100.0 suositus 20.0) ");
+            System.out.println("Minkä kokoinen laatikko tehdään? (minimi 10.0 maksimi 100.0 suositus 18.0) ");
             String syote = input.nextLine();
             if( asetalaatikonkoko(syote) ) {
                 break;
@@ -79,13 +80,19 @@ public class tekstikayttoliittyma {
      * @return true jos syöte on sopiva false jos ei ole
      */
     public boolean asetalaatikonkoko(String syote) {
-        double yriteluku = Double.parseDouble(syote);
-        if( (yriteluku >= 10.0) && (yriteluku <= 100.0) ) {
-            laatikonkoko = yriteluku;
-            return true;
+        try {
+            double yriteluku = Double.parseDouble(syote);
+            if( (yriteluku >= 10.0) && (yriteluku <= 100.0) ) {
+                laatikonkoko = yriteluku;
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Laatikon koon pitää olla luku!");
+            return false;
         }
-        return false;
     }
+        
     
     /**
      * kysyy käyttäjältä kuinka monta molekyyliä laitetaan laatikkoon.
@@ -110,16 +117,21 @@ public class tekstikayttoliittyma {
      * @return true jos syöte on sopiva, false jos ei ole
      */
     public boolean asetamolekyylimaara(String syote) {
-        int yriteluku = Integer.parseInt(syote);
-        if( (yriteluku > 0) && (yriteluku < 101) ) {
-            if( ltk.mahtuuko( laatikonkoko, yriteluku ) ) {
-                molekyylimaara = yriteluku;
-                return true;
+        try {
+            int yriteluku = Integer.parseInt(syote);
+            if( (yriteluku > 0) && (yriteluku < 101) ) {
+                if( ltk.mahtuuko( laatikonkoko, yriteluku ) ) {
+                    molekyylimaara = yriteluku;
+                    return true;
+                }
+                System.out.println("Määrä ei mahdu laatikkoon");
+                return false;
             }
-            System.out.println("Määrä ei mahdu laatikkoon");
+            return false;
+        } catch (Exception e) {
+            System.out.println("Molekyylimäärän pitää olla kokonaisluku!");
             return false;
         }
-        return false;
     }
     
     /**
@@ -127,14 +139,14 @@ public class tekstikayttoliittyma {
      */
     private void kysyaskelkoko() {
         while( true ) {
-            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.01 maksimi 1.0 suositus 0.1)");
+            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.01 maksimi 1.0 suositus 0.3)");
             String syote = input.nextLine();
             if( asetaaskelkoko(syote) ) {
                 break;
             }
             System.out.println("Ei ole sopiva koko, kokeile uudestaan.");
         }
-        System.out.println("simulaation askelkoko on nyt " + molekyylimaara);
+        System.out.println("simulaation askelkoko on nyt " + askelkoko);
     }
     
     /**
@@ -144,12 +156,17 @@ public class tekstikayttoliittyma {
      * @return true jos syöte on sopiva, false jos ei ole
      */
     public boolean asetaaskelkoko(String syote) {
-        double yriteluku = Double.parseDouble(syote);
-        if( (yriteluku >= 0.01) && (yriteluku <= 1.0) ) {
-            askelkoko = yriteluku;
-            return true;
+        try {
+            double yriteluku = Double.parseDouble(syote);
+            if( (yriteluku >= 0.01) && (yriteluku <= 1.0) ) {
+                askelkoko = yriteluku;
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Askelkoon pitää olla luku");
+            return false;
         }
-        return false;
     }
     
     /**
@@ -157,7 +174,7 @@ public class tekstikayttoliittyma {
      */
     public void kysyaskelmaara() {
         while( true ) {
-            System.out.println("Anna simulaation pituus eli askelmaara. (minimi 100 maksimi 10000 suositus 4000)");
+            System.out.println("Anna simulaation pituus eli askelmaara. (minimi 100 maksimi 10000 suositus 8000)");
             String syote = input.nextLine();
             if( asetaaskelmaara(syote) ) {
                 break;
@@ -168,13 +185,18 @@ public class tekstikayttoliittyma {
     }
     
     public boolean asetaaskelmaara(String syote) {
-        double yriteluku = Double.parseDouble(syote);
-        if( (yriteluku >= 100.0) && (yriteluku <= 10000.0) ) {
-                askelmaara = 10*(int)(yriteluku/10.0);
-                simulaatiopituus = (int)(askelmaara/resoluutio);
-                return true;
+        try {
+            double yriteluku = Double.parseDouble(syote);
+            if( (yriteluku >= 100.0) && (yriteluku <= 10000.0) ) {
+                    askelmaara = 10*(int)(yriteluku/10.0);
+                    simulaatiopituus = (int)(askelmaara/resoluutio);
+                    return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Askelmäärän pitää olla kokonaisluku!");
+            return false;
         }
-        return false;
     }
     
     public double annalaatikonkoko() { return laatikonkoko; }
