@@ -19,11 +19,16 @@ public class ulkoisetvoimat {
     private int[] molekyylissa;
     private atomi[] atomit;
     
-    public ulkoisetvoimat(int lkm) {
-        atomilkm = lkm;
+    /**
+     * generaattori ulkoisten voimien rekisterille
+     * 
+     * @param atomilkm atomien lukumäärä
+     */
+    public ulkoisetvoimat(int atomilkm) {
+        this.atomilkm = atomilkm;
         tayttoaste = 0;
-        molekyylissa = new int[lkm];
-        atomit = new atomi[lkm];
+        molekyylissa = new int[atomilkm];
+        atomit = new atomi[atomilkm];
     }
     
     /**

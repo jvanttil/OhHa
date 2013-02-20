@@ -23,6 +23,15 @@ public class laatikko {
     private Random rng;
     public double muunnoskerroin = 74.50737;
     
+    /**
+     * laatikkokonstruktori asettaa atomilukumäärän nollaksi
+     * ja luo satunnaislukugeneraattorin perturbointimetodia
+     * varten.
+     * 
+     * laatikon parametrit asetetaan asetaparametrit-metodilla, 
+     * koska mahtuuko-metodi pitää ajaa parametrien sopivuuden
+     * varmistamiseksi
+     */
     public laatikko() {
         this.atomilkm = 0;
         this.rng = new Random();
@@ -54,8 +63,8 @@ public class laatikko {
      * 
      * toimii generointimetodin sisältä
      * 
-     * @param skoko laatikon koko
-     * @param smolekyylilkm molekyylien määrä laatikossa
+     * @param laatikonkoko laatikon koko
+     * @param molekyylilkm molekyylien määrä laatikossa
      */
     private void asetaparametrit(double laatikonkoko, int molekyylilkm) {
         this.laatikonkoko = laatikonkoko;
@@ -73,8 +82,8 @@ public class laatikko {
      * 
      * myöskin laittaa atomit ulkoisten voimien rekisteriin
      * 
-     * @param skoko laatikon koko
-     * @param smolekyylilkm molekyylien määrä laatikossa
+     * @param laatikonkoko laatikon koko
+     * @param molekyylilkm molekyylien määrä laatikossa
      */
     public void generoi(double laatikonkoko, int molekyylilkm) {
         asetaparametrit(laatikonkoko,molekyylilkm);

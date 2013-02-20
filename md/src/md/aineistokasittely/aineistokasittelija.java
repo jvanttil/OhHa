@@ -24,6 +24,21 @@ public class aineistokasittelija {
     private static double[][] potentiaalienergiadata;
     private static double[] potentiaalienergiakeskiarvot;
     
+    /**
+     * aineistonkäsittelijäkonstruktori luo tarvittavat taulukot 
+     * simulaatiodatan tallettamiseen.
+     * 
+     * konstruktori tarvitsee laatikon koon, molekyylien määrän, 
+     * aika-askeleen koon, askelten määrän, ja tallennusresoluution.
+     * 
+     * olettaa, että kaikki molekyylit ovat kaksiatomisia.
+     * 
+     * @param laatikonkoko laatikon koko
+     * @param molekyylilkm molekyylien lukumäärä
+     * @param dt aika-askeleen koko
+     * @param steps aika-askelten lukumäärä
+     * @param resoluutio tallennusresoluutio, aina 10
+     */
     public aineistokasittelija(double laatikonkoko, int molekyylilkm, double dt, int steps, int resoluutio) {
         this.laatikonkoko = laatikonkoko;
         this.molekyylilkm = molekyylilkm;

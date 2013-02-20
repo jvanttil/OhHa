@@ -23,6 +23,9 @@ public class tekstikayttoliittyma {
     private int simulaatiopituus;
     private piirto animaatio;
     
+    /**
+     * käyttöliittymäkonstruktori
+     */
     public tekstikayttoliittyma(){
         ltk = new laatikko();
         resoluutio = 10;

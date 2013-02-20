@@ -20,6 +20,13 @@ public class sidos {
     private double voimay;
     private double voimaz;
     
+    /**
+     * konstruktori sidokselle laittaa sidoksen kahden atomin väliin
+     * 
+     * @param s1 atomi 1
+     * @param s2 atomi 2
+     * @param tsp tasapainoetäisyys
+     */
     public sidos(atomi s1, atomi s2, double tsp) {
         a1 = s1;
         a2 = s2;

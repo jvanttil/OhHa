@@ -8,6 +8,7 @@ import md.simulaatio.atomi;
  */
 public class vety extends atomi{
     
+    /*
     public vety() {
         massa = 1.0;
         sijaintix = 0.0;
@@ -20,7 +21,15 @@ public class vety extends atomi{
         kertymay = 0.0;
         kertymaz = 0.0;
     }
+    */
     
+    /**
+     * konstruktori vetyatomille
+     * 
+     * @param sx x-koordinaatti
+     * @param sy y-koordinaatti
+     * @param sz z-koordinaatti
+     */
     public vety(double sx, double sy, double sz) {
         massa = 1.0;
         sijaintix = sx;

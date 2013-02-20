@@ -18,6 +18,7 @@ public class vetykaasu implements molekyyli{
     private double koko;
     private double massa = 2.0;
     
+    /*
     public vetykaasu() {
         vedyt = new vety[2];
         vedyt[0] = new vety(-0.735,0.0,0.0);
@@ -26,7 +27,16 @@ public class vetykaasu implements molekyyli{
         nopeus = 0.0;
         koko = 2.0;
     }
+    */
     
+    /**
+     * kenstruktori tekee vetymolekyylin haluttuun sijaintiin ja 
+     * asettaa vetyatomit tasapainoetäisyyden päähän toisistaan
+     * 
+     * @param sx x-koordinaatti +- 0.735 (tasapaino)
+     * @param sy y-koordinaatti
+     * @param sz z-koordinaatti
+     */
     public vetykaasu(double sx, double sy, double sz) {
         vedyt = new vety[2];
         vedyt[0] = new vety(sx-0.735,sy,sz);
@@ -48,7 +58,13 @@ public class vetykaasu implements molekyyli{
                     (vedyt[0].annanopeusy()+vedyt[1].annanopeusy())/2.0+
                     (vedyt[0].annanopeusz()+vedyt[1].annanopeusz())/2.0;
     }
-
+    
+    /**
+     * palauttaa molekyylin nopeuden
+     * huom nopeus pitää ensin laskea metodilla laskenopeus()
+     * 
+     * @return nopeus
+     */
     public double annanopeus() { return Math.abs(nopeus); }
     
     /**
@@ -98,7 +114,7 @@ public class vetykaasu implements molekyyli{
      * askeleen koko tarvitaan liikkeen skaalaamiseksi
      * 
      * @param dt aika-askeleen koko
-     * @param koko laatikon koko
+     * @param laatikonkoko laatikon koko
      */
     public void liikuta(double dt,double laatikonkoko) {
         vedyt[0].liikuta(dt,laatikonkoko);
