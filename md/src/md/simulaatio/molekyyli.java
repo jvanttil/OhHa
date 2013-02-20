@@ -2,6 +2,9 @@ package md.simulaatio;
 
 /**
  * yhteinen rajapinta molekyyleille
+ * 
+ * tällä hetkellä on mahdollista lisätä vain kaksiatomisia molekyylejä
+ * 
  * @author jvanttil
  */
 public interface molekyyli {

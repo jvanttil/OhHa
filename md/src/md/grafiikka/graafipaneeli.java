@@ -5,6 +5,8 @@ import javax.swing.*;
 import md.aineistokasittely.aineistokasittelija;
 
 /**
+ * Piirtää liike-energiasta ja potentiaalienergiasta käyrät ruudulle
+ * 
  * @author jvanttil
  */
 public class graafipaneeli extends JPanel {
@@ -34,7 +36,7 @@ public class graafipaneeli extends JPanel {
         setPreferredSize( new Dimension( ikkunankoko, ikkunankoko ));
         setBackground( Color.black );
     }
-        
+    
     public void paintComponent( Graphics page ) {
         super.paintComponent( page );
         for( int i = 0; i < this.simulaatiopituus; i++ ) {

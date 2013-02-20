@@ -29,7 +29,7 @@ public class tekstikayttoliittyma {
     }
     
     /**
-     * hoitaa koko simulaatioproseduurin
+     * hoitaa koko simulaatioproseduurin.
      */
     public void aja() {
         alusta();
@@ -39,17 +39,36 @@ public class tekstikayttoliittyma {
         System.out.println("simuloidaan ");
         ltk.simuloi(askelkoko,askelmaara,resoluutio);
         System.out.println("simulaatio valmis ");
-        aineisto.paikkadatatiedostoon("paikat.txt");
-        System.out.println("atomien sijainnit kirjoitettu tiedostoon paikat.txt");
+        tallennadata();
         aineisto.laskekeskiarvot();
-        System.out.println("liike-energian maksimi " + aineistokasittelija.annamaksimiliikeenergia());
+        kerrotulokset();
         animaatio = new piirto(molekyylimaara*2,laatikonkoko,simulaatiopituus);
         animaatio.aktivoi();
         
     }
     
     /**
-     * kutsuu metodit, jotka kysyvät käyttäjältä simulaation parametrejä
+     * kirjoittaa ruudulle keskeisimpiä tuloksia simulaatiosta.
+     */
+    private void kerrotulokset() {
+        System.out.println("liike-energian keskiarvo simulaation lopussa oli " 
+                + aineistokasittelija.haeliikeenergia((int)(askelmaara/resoluutio)-1) + " eV");
+        System.out.println("tällä perusteella kaasun lämpötila oli arviolta " 
+                + 14746.98*aineistokasittelija.haeliikeenergia((int)(askelmaara/resoluutio)-1) + " K");
+    }
+    
+    /**
+     * tallentaa tiedostoihin atomien paikat, liike-energiat ja potentiaalienergiat.
+     */
+    private void tallennadata() {
+        aineisto.kirjoitadatatiedostoon(0,"paikat.txt");
+        aineisto.kirjoitadatatiedostoon(1,"ke.txt");
+        aineisto.kirjoitadatatiedostoon(2,"pe.txt");
+        System.out.println("atomien sijainnit kirjoitettu tiedostoon paikat.txt");
+    }
+    
+    /**
+     * kutsuu metodit, jotka kysyvät käyttäjältä simulaation parametrejä.
      */
     public void alusta() {
         kysylaatikonkoko();
@@ -63,7 +82,7 @@ public class tekstikayttoliittyma {
      */
     private void kysylaatikonkoko() {
         while( true ) {
-            System.out.println("Minkä kokoinen laatikko tehdään? (minimi 10.0 maksimi 100.0 suositus 18.0) ");
+            System.out.println("Minkä kokoinen laatikko tehdään? (minimi 10.0 maksimi 50.0 suositus 18.0) ");
             String syote = input.nextLine();
             if( asetalaatikonkoko(syote) ) {
                 break;
@@ -82,7 +101,7 @@ public class tekstikayttoliittyma {
     public boolean asetalaatikonkoko(String syote) {
         try {
             double yriteluku = Double.parseDouble(syote);
-            if( (yriteluku >= 10.0) && (yriteluku <= 100.0) ) {
+            if( (yriteluku >= 10.0) && (yriteluku <= 50.0) ) {
                 laatikonkoko = yriteluku;
                 return true;
             }
@@ -99,7 +118,7 @@ public class tekstikayttoliittyma {
      */
     private void kysymolekyylimaara() {
         while( true ) {
-            System.out.println("Anna molekyylien lukumäärä. (minimi 1 maksimi 100 suositus 8)");
+            System.out.println("Anna molekyylien lukumäärä. (minimi 1 maksimi 30 suositus 8)");
             String syote = input.nextLine();
             if( asetamolekyylimaara(syote) ) {
                 break;
@@ -119,7 +138,7 @@ public class tekstikayttoliittyma {
     public boolean asetamolekyylimaara(String syote) {
         try {
             int yriteluku = Integer.parseInt(syote);
-            if( (yriteluku > 0) && (yriteluku < 101) ) {
+            if( (yriteluku > 0) && (yriteluku < 31) ) {
                 if( ltk.mahtuuko( laatikonkoko, yriteluku ) ) {
                     molekyylimaara = yriteluku;
                     return true;
@@ -139,7 +158,7 @@ public class tekstikayttoliittyma {
      */
     private void kysyaskelkoko() {
         while( true ) {
-            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.01 maksimi 1.0 suositus 0.3)");
+            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.01 maksimi 1.0 suositus 0.2)");
             String syote = input.nextLine();
             if( asetaaskelkoko(syote) ) {
                 break;
@@ -174,7 +193,7 @@ public class tekstikayttoliittyma {
      */
     public void kysyaskelmaara() {
         while( true ) {
-            System.out.println("Anna simulaation pituus eli askelmaara. (minimi 100 maksimi 10000 suositus 8000)");
+            System.out.println("Anna simulaation pituus eli askelmaara. (minimi 100 maksimi 20000 suositus 8000)");
             String syote = input.nextLine();
             if( asetaaskelmaara(syote) ) {
                 break;
@@ -184,10 +203,16 @@ public class tekstikayttoliittyma {
         System.out.println("simulaation pituus on nyt " + askelmaara + " askelta.");
     }
     
+    /**
+     * asettaa simulaation askelmäärän eli pituuden jos syöte on sopiva
+     * 
+     * @param syote käyttäjältä kysytty syöte
+     * @return true jos syöte on sopiva, false jos ei ole
+     */
     public boolean asetaaskelmaara(String syote) {
         try {
             double yriteluku = Double.parseDouble(syote);
-            if( (yriteluku >= 100.0) && (yriteluku <= 10000.0) ) {
+            if( (yriteluku >= 100.0) && (yriteluku <= 20000.0) ) {
                     askelmaara = 10*(int)(yriteluku/10.0);
                     simulaatiopituus = (int)(askelmaara/resoluutio);
                     return true;

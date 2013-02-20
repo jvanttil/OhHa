@@ -13,6 +13,13 @@ public class piirto {
     private double laatikonkoko;
     private int simulaatiopituus;
     
+    /**
+     * alustaa JFramen piirtoa varten
+     * 
+     * @param atomilkm atomien lukumäärä
+     * @param laatikonkoko laatikon koko
+     * @param simulaatiopituus simulaatiosta kerätyn datan pituus
+     */
     public piirto( int atomilkm, double laatikonkoko, int simulaatiopituus ) {
         ruutu = new JFrame("ikkuna");
         this.atomilkm = atomilkm;
@@ -22,7 +29,7 @@ public class piirto {
     }
     
     /**
-     * käynnistää piirtämisen
+     * käynnistää piirtämisen.
      */
     public void aktivoi() {
         ruutu.getContentPane().add(new kayttopaneeli(atomilkm,laatikonkoko,simulaatiopituus));

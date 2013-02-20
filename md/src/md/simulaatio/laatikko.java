@@ -5,7 +5,11 @@ import md.aineistokasittely.aineistokasittelija;
 
 /**
  * simulaatiolaatikko
- * suorittaa simulaation
+ * 
+ * suorittaa simulaation ja lähettää atomien paikat, liike-energiat
+ * ja potentiaalienergiat aineistokäsittelijä-luokan staattiisiin 
+ * taulukoihin
+ * 
  * @author jvanttil
  */
 public class laatikko {
@@ -17,7 +21,7 @@ public class laatikko {
     private molekyyli[] molekyylilista;
     private ulkoisetvoimat voimarekisteri;
     private Random rng;
-    public double muunnoskerroin = 0.45;
+    public double muunnoskerroin = 74.50737;
     
     public laatikko() {
         this.atomilkm = 0;
@@ -94,18 +98,21 @@ public class laatikko {
     }
     
     /**
-     * antaa molekyylille pikkaisen vauhtia johonkin suuntaan
+     * antaa molekyylille pikkaisen vauhtia johonkin suuntaan.
      */
     public void perturboi() {
-        // perturbaatio siirtyy pallokoordinaatistoon kunhan ehtii
+        double theta;
+        double phi;
         for( int i = 0; i < this.molekyylilkm; i++ ) {
-            this.molekyylilista[i].perturboi(0.05*rng.nextGaussian(),0.05*rng.nextGaussian(),0.05*rng.nextGaussian());
+            phi   = 2*Math.PI*rng.nextDouble();
+            theta = Math.PI*rng.nextDouble();
+            this.molekyylilista[i].perturboi(Math.sin(theta)*Math.cos(phi),Math.sin(theta)*Math.sin(phi),Math.cos(theta));
         }
     }
     
     /**
      * ajaa koko simulaation
-     * §
+     * 
      * laskee ensin ulkoiset voimat, sitten sisäiset voimat ja sitten liikuttaa
      * kaikkia molekyylejä
      * 
@@ -123,14 +130,24 @@ public class laatikko {
                     aineistokasittelija.laitapaikkadataan((int)(i/resoluutio),j,molekyylilista[j].annasijainnit()); 
                     aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j*2,muunnoskerroin*molekyylilista[j].annaliikeenergia(0));
                     aineistokasittelija.laitaliikeenergiadataan((int)(i/resoluutio),j*2+1,muunnoskerroin*molekyylilista[j].annaliikeenergia(1));
-                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2,dt*muunnoskerroin*molekyylilista[j].annakertymasumma(0));
-                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2+1,dt*muunnoskerroin*molekyylilista[j].annakertymasumma(1));
+                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2,0.5*dt*muunnoskerroin*molekyylilista[j].annakertymasumma(0));
+                    aineistokasittelija.laitapotentiaalienergiadataan((int)(i/resoluutio),j*2+1,0.5*dt*muunnoskerroin*molekyylilista[j].annakertymasumma(1));
                 }
             }
             for( int j = 0; j < molekyylilkm; j++ ) { molekyylilista[j].liikuta(dt,laatikonkoko); }
         }
     }
     
+    /**
+     * palauttaa halutun molekyylin halutun atomin halutun koordinatin
+     * 
+     * metodia ei käytetä tällä hetkellä missään!
+     * 
+     * @param molekyyli molekyylilistan indeksi
+     * @param atomi joko 0 tai 1 kaksiatomisessa molekyylissä
+     * @param koordinaatti 0 on x, 1 on y, 2 on z
+     * @return sijainti halutun koordinaatin suhteen
+     */
     public double annasijainti( int molekyyli, int atomi, int koordinaatti ) {
         if( koordinaatti == 0 ) {
             return molekyylilista[molekyyli].annasijaintix(atomi);

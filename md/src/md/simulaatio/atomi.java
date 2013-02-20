@@ -1,7 +1,13 @@
 package md.simulaatio;
 
 /**
- * atomiluokka sisältää atomin sijainnin ja nopeuden ja massan
+ * atomiluokka 
+ * sisältää atomin sijainnin ja nopeuden ja massan ja metodin 
+ * atomin liikuttamiseen aika-askelen verran eteenpäin
+ * 
+ * atomeihin vaikuttava potentiaali tulee laatikko-luokan 
+ * simuloi-metodin kautta sidos- ja ulkoisetvoimat-luokista
+ * 
  * @author jvanttil
  */
 public class atomi {
@@ -47,7 +53,8 @@ public class atomi {
     }
     
     /**
-     * asettaa kerrytetyt voimat uudelleen nolliksi
+     * asettaa kerrytetyt voimat uudelleen nolliksi seuraavan
+     * askeleen laskemista varten.
      */
     private void nollaavoimat() {
         kertymax = 0.0;
@@ -79,6 +86,8 @@ public class atomi {
      * 
      * tarkistaa ovatko uudet sijainnit yhä laatikon sisällä ja kimmottaa 
      * atomin laatikon reunoista, jos näin ei ole
+     * 
+     * metodi ei ole tarkka nopeuksien ja kuljetun matkan suhteen.
      * 
      * @param laatikonkoko laatikon koko
      */

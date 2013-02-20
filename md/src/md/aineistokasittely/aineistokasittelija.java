@@ -91,21 +91,33 @@ public class aineistokasittelija {
     }
     
     /**
-     * laittaa liike-energiadatatauluun luvun. taulukko kutsuu tätä
+     * laittaa liike-energiadatatauluun luvun, taulukko kutsuu tätä
      * metodia
      * 
-     * @param rivi rivi, jolle luku syötetään
-     * @param sarake sarake, jolle luku syötetään
+     * @param rivi rivi/aika, jolle luku syötetään
+     * @param sarake sarake/atomi, jolle luku syötetään
      * @param luku syötettävä luku
      */
     public static void laitaliikeenergiadataan(int rivi, int sarake, double luku) {
         liikeenergiadata[rivi][sarake] = luku;
     }
     
+    /**
+     * laittaa potentiaalienergiadatatauluun luvun, taulukko kutsuu tätä
+     * metodia 
+     * 
+     * @param rivi rivi/aika, jolle luku syötetään
+     * @param sarake sarake/atomi, jolle luku syötetään
+     * @param luku syötettävä luku
+     */
     public static void laitapotentiaalienergiadataan( int rivi, int sarake, double luku ) {
         potentiaalienergiadata[rivi][sarake] = luku;
     }
     
+    /**
+     * laskee liike-energialle ja potentiaalienergialle keskiarvot jokaiselle 
+     * aika-askeleelle piirtoa varten.
+     */
     public static void laskekeskiarvot() {
         for( int i = 0; i < rivit; i++ ) {
             for( int j = 0; j < energiasarakkeet; j++ ) {
@@ -118,7 +130,7 @@ public class aineistokasittelija {
     }
     
     /**
-     * laittaa paikkadatataulun ruudulle niin että näkee et homma toimii
+     * laittaa paikkadatataulun ruudulle niin että näkee et homma toimii.
      */
     public void paikkadataruudulle() {
         for( int i = 0; i < rivit; i++ ) {
@@ -131,20 +143,33 @@ public class aineistokasittelija {
     }
     
     /**
-     * tallentaa koko paikkadatataulukon tiedostoon aikadatalla 
+     * tallentaa datataulukoita tiedostoon aikadatalla 
      * täydennettynä
      * 
-     * ensimmäinen sarake sisältää ajat
+     * ensimmäinen sarake sisältää ajat, sen perään liitetään
+     * lukuja a) paikkadatasta, b) liike-energiadatasta tai
+     * c) potentiaalienergiadatasta
      * 
+     * @param data 0 jos halutaan tallentaa paikat, 1 jos KE, 2 jos PE
      * @param tiedostonimi tallennustiedoston nimi
      */
-    public void paikkadatatiedostoon(String tiedostonimi) {
+    public void kirjoitadatatiedostoon( int data, String tiedostonimi ) {
         try{
             PrintWriter kirjoittaja = new PrintWriter(new File(tiedostonimi));
             for( int i = 0; i < rivit; i++ ) {
-                kirjoittaja.printf("%.4f ", aikadata[i]);
-                for( int j = 0; j < paikkasarakkeet; j++ ) {
-                    kirjoittaja.printf("%.4f ", paikkadata[i][j]);
+                kirjoittaja.printf("%.3f ", aikadata[i]);
+                if(data == 0) {
+                    for( int j = 0; j < paikkasarakkeet; j++ ) {
+                        kirjoittaja.printf("%.8f ", paikkadata[i][j]);
+                    }
+                } else if(data == 1) {
+                    for( int j = 0; j < energiasarakkeet; j++ ) {
+                        kirjoittaja.printf("%.8f ", liikeenergiadata[i][j]);
+                    }
+                } else if(data == 2) {
+                    for( int j = 0; j < energiasarakkeet; j++ ) {
+                        kirjoittaja.printf("%.8f ", potentiaalienergiadata[i][j]);
+                    }
                 }
                 kirjoittaja.println("");
             }
@@ -155,7 +180,8 @@ public class aineistokasittelija {
     }
     
     /**
-     * tulostaa tannennetut liike-energiat ruudulle
+     * tulostaa tannennetut liike-energiat ruudulle, käytetään 
+     * vain tarkastamaan, että koodi toimii.
      */
     public void liikeenergiadataruudulle() {
         for( int i = 0; i < rivit; i++ ) {
@@ -169,7 +195,8 @@ public class aineistokasittelija {
     }
     
     /**
-     * tulostaa tannennetut potentiaalienergiat ruudulle
+     * tulostaa tannennetut potentiaalienergiat ruudulle, käytetään 
+     * vain tarkastamaan, että koodi toimii.
      */
     public void potentiaalienergiadataruudulle() {
         for( int i = 0; i < rivit; i++ ) {
@@ -195,10 +222,22 @@ public class aineistokasittelija {
         return paikkadata[rivi][sarake];
     }
     
+    /**
+     * hakee liike-energiakeskiarvoista halutun ajankohdan luvun
+     * 
+     * @param rivi ajankohta, jolta luku haetaan
+     * @return liike-energian keskiarvo
+     */
     public static double haeliikeenergia( int rivi ) {
         return liikeenergiakeskiarvot[rivi];
     }
     
+    /**
+     * hakee potentiaalienergiakeskiarvoista halutun ajankohdan luvut
+     * 
+     * @param rivi ajankohta, jolta luku haetaan
+     * @return potentiaalienergian keskiarvo
+     */
     public static double haepotentiaalienergia( int rivi ) {
         return potentiaalienergiakeskiarvot[rivi];
     }
@@ -211,6 +250,11 @@ public class aineistokasittelija {
         return paikkasarakkeet;
     }
     
+    /**
+     * hakee liike-energiataulukosta maksimiarvon
+     * 
+     * @return maksimiliike-energia simulaatiossa
+     */
     public static double annamaksimiliikeenergia() {
         double maksimi = 0.0;
         for( int i = 0; i < rivit; i++ ) {
@@ -223,6 +267,11 @@ public class aineistokasittelija {
         return maksimi;
     }
     
+    /**
+     * hakee potentiaalienergiataulukosta maksimiarvon
+     * 
+     * @return maksimipotentiaalienergia simulaatiossa
+     */
     public static double annamaksimipotentiaalienergia() {
         double maksimi = 0.0;
         for( int i = 1; i < rivit; i++ ) {
