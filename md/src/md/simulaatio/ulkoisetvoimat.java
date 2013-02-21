@@ -20,7 +20,7 @@ public class ulkoisetvoimat {
     private atomi[] atomit;
     
     /**
-     * generaattori ulkoisten voimien rekisterille
+     * konstruktori ulkoisten voimien rekisterille
      * 
      * @param atomilkm atomien lukumäärä
      */

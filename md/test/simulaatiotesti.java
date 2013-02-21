@@ -64,10 +64,10 @@ public class simulaatiotesti {
     @Test
     public void kertymakasautuu() {
         double lisays = 0.1;
-        this.vk.perturboi(lisays,lisays,lisays);
-        this.vk.perturboi(lisays,lisays,lisays);
-        assertTrue(Math.abs(this.vk.annakertymasumma(0)-lisays*12)<0.0000000000001);
-        assertTrue(Math.abs(this.vk.annakertymasumma(1)-lisays*12)<0.0000000000001);
+        this.vk.perturboi(lisays,0.0,0.0);
+        this.vk.perturboi(lisays,0.0,0.0);
+        assertTrue(Math.abs(this.vk.annakertymasumma(0)-lisays*2)<0.0000000000001);
+        assertTrue(Math.abs(this.vk.annakertymasumma(1)-lisays*2)<0.0000000000001);
     }
     
     @Test
