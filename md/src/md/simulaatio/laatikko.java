@@ -51,7 +51,7 @@ public class laatikko {
         while( Math.pow(koeruudukonkoko,3) <= koemolekyylilkm ) {
             koeruudukonkoko += 1;
         }
-        if( koekoko/koeruudukonkoko < 3 ) {
+        if( koekoko/koeruudukonkoko < 4 ) {
             return false;
         } else {
             return true;
@@ -107,7 +107,7 @@ public class laatikko {
     }
     
     /**
-     * antaa molekyylille pikkaisen vauhtia johonkin suuntaan.
+     * antaa molekyylille pikkaisen vauhtia satunnaiseen suuntaan.
      */
     public void perturboi() {
         double theta;
@@ -115,7 +115,7 @@ public class laatikko {
         for( int i = 0; i < this.molekyylilkm; i++ ) {
             phi   = 2*Math.PI*rng.nextDouble();
             theta = Math.PI*rng.nextDouble();
-            this.molekyylilista[i].perturboi(Math.sin(theta)*Math.cos(phi),Math.sin(theta)*Math.sin(phi),Math.cos(theta));
+            this.molekyylilista[i].perturboi(0.5*Math.sin(theta)*Math.cos(phi),0.5*Math.sin(theta)*Math.sin(phi),0.5*Math.cos(theta));
         }
     }
     

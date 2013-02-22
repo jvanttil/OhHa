@@ -161,7 +161,7 @@ public class tekstikayttoliittyma {
      */
     private void kysyaskelkoko() {
         while( true ) {
-            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.01 maksimi 1.0 suositus 0.2)");
+            System.out.println("Anna simulaation tarkkuus eli askelkoko. (minimi 0.05 maksimi 1.0 suositus 0.2)");
             String syote = input.nextLine();
             if( asetaaskelkoko(syote) ) {
                 break;
@@ -180,7 +180,7 @@ public class tekstikayttoliittyma {
     public boolean asetaaskelkoko(String syote) {
         try {
             double yriteluku = Double.parseDouble(syote);
-            if( (yriteluku >= 0.01) && (yriteluku <= 1.0) ) {
+            if( (yriteluku >= 0.05) && (yriteluku <= 1.0) ) {
                 askelkoko = yriteluku;
                 return true;
             }

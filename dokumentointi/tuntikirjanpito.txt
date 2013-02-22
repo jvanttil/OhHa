@@ -26,3 +26,4 @@
 2013-02-16	1.0 h energioiden laskentaa
 2013-02-17	2.0 h lisää grafiikkaa
 2013-02-19	1.5 h käyttöliittymän viilausta
+2012-02-22	2.5 h dokumentointia ja viimeistelyä
