@@ -25,3 +25,19 @@ tulostaen tiedostoon kaikkien atomien koordinaatit kullakin
 aika-askeleella. Tämän jälkeen tiedosto voidaan uudelleen 
 lukea muistiin, ja siitä voidaan tulostaa ruudulle tärkeimpiä 
 tunnuslukuja, kuten esimerkiksi keskimääräistä liike-energiaa. 
+
+rakenteen kuvaus:
+
+Käyttöliittymäluokka kysyy käyttäjältä ajoparametrit (4) ja
+luo laatikon sekä piirtoluokan. Laatikkoluokka hoitaa kaiken 
+simulointiin liittyvän, eli asettelee halutun määrän molekyyli-
+luokan instansseja tilaan ja luo ulkosetvoimat-luokan laskemaan 
+molekyylienvälisiä interaktioita. Molekyylit koostuvat atomi-
+luokan olioista ja sidos-luokan olioista. Atomit ovat niitä, 
+joilla on sijainti, sidos tekee molekyylinsisäiset voimat. 
+Laatikko syöttää joka simulaatioaskeleella atomien paikat 
+ja energiat staattiseen taulukkoon aineistonkäsittelijässä. 
+Kun simulaatio on valmis piirto-luokka tuottaa animaation, 
+jossa atomien paikat ja energiat luetaan aineistonkäsittelijästä 
+ja piirretään ruudulle.
+
